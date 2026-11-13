@@ -1,0 +1,3364 @@
+{
+ "rooms": [
+  401,
+  402,
+  403,
+  404,
+  405,
+  406,
+  407,
+  408,
+  409,
+  410,
+  411,
+  501,
+  502,
+  503,
+  504,
+  505,
+  506,
+  507,
+  508,
+  509,
+  510,
+  511,
+  513,
+  514,
+  515,
+  516,
+  517,
+  518,
+  519,
+  520,
+  521,
+  522,
+  523,
+  524,
+  601,
+  602,
+  603,
+  604,
+  605,
+  606,
+  607,
+  608,
+  609,
+  610,
+  611,
+  612,
+  613,
+  614,
+  615,
+  616,
+  617,
+  618,
+  619,
+  620,
+  621,
+  622,
+  623,
+  624,
+  701,
+  702,
+  703,
+  704,
+  705,
+  706,
+  707,
+  708,
+  709,
+  710,
+  711,
+  712,
+  713,
+  714,
+  715,
+  716,
+  717,
+  718,
+  719,
+  720,
+  721,
+  722,
+  723,
+  724,
+  801,
+  802,
+  803,
+  804,
+  805,
+  806,
+  807,
+  808,
+  809,
+  810,
+  811,
+  812,
+  813,
+  814,
+  815,
+  816,
+  817,
+  818,
+  819,
+  820,
+  821,
+  822,
+  823,
+  824,
+  901,
+  902,
+  903,
+  904,
+  905,
+  906,
+  907,
+  908,
+  909,
+  910,
+  911,
+  912,
+  913,
+  914,
+  915,
+  916,
+  917,
+  918,
+  919,
+  920,
+  921,
+  922,
+  923,
+  924,
+  1001,
+  1002,
+  1003,
+  1004,
+  1005,
+  1006,
+  1007,
+  1008,
+  1009,
+  1010,
+  1011,
+  1012,
+  1013,
+  1014,
+  1015,
+  1016,
+  1017,
+  1018,
+  1019,
+  1020,
+  1021,
+  1022,
+  1023,
+  1024,
+  1101,
+  1102,
+  1103,
+  1104,
+  1105,
+  1106,
+  1107,
+  1108,
+  1109,
+  1110,
+  1111,
+  1112,
+  1113,
+  1114,
+  1115,
+  1116,
+  1117,
+  1119,
+  1121,
+  1122,
+  1123,
+  1124,
+  1201,
+  1202,
+  1203,
+  1204,
+  1205,
+  1206,
+  1207,
+  1208,
+  1209,
+  1210,
+  1211,
+  1212,
+  1213,
+  1214,
+  1215,
+  1216,
+  1217,
+  1219,
+  1221,
+  1222,
+  1223,
+  1224,
+  1401,
+  1402,
+  1403,
+  1404,
+  1405,
+  1406,
+  1407,
+  1408,
+  1409,
+  1410,
+  1411,
+  1412,
+  1413,
+  1414,
+  1415,
+  1416,
+  1417,
+  1419,
+  1421,
+  1422,
+  1423,
+  1424,
+  1501,
+  1502,
+  1503,
+  1508,
+  1509,
+  1510,
+  1511,
+  1512,
+  1513,
+  1514,
+  1515,
+  1516,
+  1519,
+  1521,
+  1522,
+  1523,
+  1524
+ ],
+ "global": [
+  {
+   "t": "Push up and secure all access panels",
+   "n": "Material need-touch up paint"
+  },
+  {
+   "t": "Check door strike security plate",
+   "n": "Material need-touch up paint"
+  },
+  {
+   "t": "Check 45 degree angle (for auto closure)",
+   "n": ""
+  },
+  {
+   "t": "Desk Lamp - Check for new globe, set screw to secure globe and proper bulb. Ensure correct location next to TV",
+   "n": ""
+  },
+  {
+   "t": "Check FF&E connections for all cords and lighting",
+   "n": ""
+  },
+  {
+   "t": "Replace escutcheon at WC",
+   "n": "Check on purchasing"
+  }
+ ],
+ "roomItems": {
+  "401": {
+   "items": [
+    {
+     "t": "Cut carpet thread sticking up window side of bed",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "404": {
+   "items": [
+    {
+     "t": "Replace WC water supply escutcheon",
+     "n": ""
+    },
+    {
+     "t": "Extension cord for floor lamp",
+     "n": ""
+    },
+    {
+     "t": "Longer drape batons. 409 has correct length.",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "405": {
+   "items": [
+    {
+     "t": "Chip on HB bed base",
+     "n": "OR furniture medic"
+    },
+    {
+     "t": "Secure fridge with screws",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "406": {
+   "items": [
+    {
+     "t": "Secure fridge with screws",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "407": {
+   "items": [
+    {
+     "t": "Cord management at night stands",
+     "n": ""
+    },
+    {
+     "t": "paint touch up at bath pocket door wet bar side",
+     "n": ""
+    },
+    {
+     "t": "adjust pocket door (hard to pull)",
+     "n": ""
+    },
+    {
+     "t": "change black data faceplates to whhite",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "408": {
+   "items": [
+    {
+     "t": "Secure fridge with another screw (other side)",
+     "n": ""
+    },
+    {
+     "t": "Caulking at tub",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "410": {
+   "items": [
+    {
+     "t": "Wire tie for floor lamp",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "411": {
+   "items": [
+    {
+     "t": "Roller shdes need ot be adjusted",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "501": {
+   "items": [
+    {
+     "t": "Fridge secured",
+     "n": ""
+    },
+    {
+     "t": "Missing grout in shower",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "502": {
+   "items": [
+    {
+     "t": "Wrong bevrage tray",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "503": {
+   "items": [
+    {
+     "t": "Fridge secured",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "504": {
+   "items": [
+    {
+     "t": "Clock radio missing",
+     "n": ""
+    },
+    {
+     "t": "Vanity pulls loose - incorrect screws",
+     "n": ""
+    },
+    {
+     "t": "Schltuter strip at vertical WC tile entry",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "505": {
+   "items": [
+    {
+     "t": "Paint touch up",
+     "n": ""
+    },
+    {
+     "t": "Secure fidge with screws (both sides)",
+     "n": ""
+    },
+    {
+     "t": "Adjust entry door",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "506": {
+   "items": [
+    {
+     "t": "Anchor in fridge",
+     "n": ""
+    },
+    {
+     "t": "Base by window paint",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "507": {
+   "items": [
+    {
+     "t": "Wireless remotes for drapes not in rooms. Check with OPS",
+     "n": ""
+    },
+    {
+     "t": "Paint baseboard behind sofa below window.",
+     "n": ""
+    },
+    {
+     "t": "Shower head escutcheon",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "508": {
+   "items": [
+    {
+     "t": "Replace sconce shades at headboard",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "509": {
+   "items": [
+    {
+     "t": "Replace desk lamp globe",
+     "n": ""
+    },
+    {
+     "t": "Caulking around tub",
+     "n": ""
+    },
+    {
+     "t": "tighten left screw at fridge (all the way)",
+     "n": ""
+    },
+    {
+     "t": "paint touch up",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "510": {
+   "items": [
+    {
+     "t": "Wrong clock radio",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up interior to right of entry door",
+     "n": ""
+    },
+    {
+     "t": "Panel in closet not latching due to rod tranx",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "511": {
+   "items": [
+    {
+     "t": "Vanity pull not secure",
+     "n": ""
+    },
+    {
+     "t": "Fasten fridge to interior cabinet",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "513": {
+   "items": [
+    {
+     "t": "Fridge unsecured",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "514": {
+   "items": [
+    {
+     "t": "Fridge needs to be secured",
+     "n": ""
+    },
+    {
+     "t": "Clogged sink",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "515": {
+   "items": [
+    {
+     "t": "No owner go-back task listed",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "516": {
+   "items": [
+    {
+     "t": "Blank out phone with plate in bathroom",
+     "n": ""
+    },
+    {
+     "t": "Check towel ring in bathroom",
+     "n": ""
+    },
+    {
+     "t": "Lower makeup mirror (ADA)",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "517": {
+   "items": [
+    {
+     "t": "Cable management at desk",
+     "n": ""
+    },
+    {
+     "t": "Change black data plates to white",
+     "n": ""
+    },
+    {
+     "t": "Paint bvaseboard under mirror",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "518": {
+   "items": [
+    {
+     "t": "Cover plate missing from backside of connecting door",
+     "n": ""
+    },
+    {
+     "t": "Shave connecting door",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "519": {
+   "items": [
+    {
+     "t": "Vanity handle needs adjustment",
+     "n": ""
+    },
+    {
+     "t": "Desk lamp glass broken",
+     "n": ""
+    },
+    {
+     "t": "Iron holder missing",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "520": {
+   "items": [
+    {
+     "t": "Chrome Towel hook in shower",
+     "n": ""
+    },
+    {
+     "t": "Push j box blank in near foyer",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "521": {
+   "items": [
+    {
+     "t": "Close WC panewl before renting room",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "522": {
+   "items": [
+    {
+     "t": "Paint at entry door jamb",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "523": {
+   "items": [
+    {
+     "t": "No owner go-back task listed",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "524": {
+   "items": [
+    {
+     "t": "Closet door is rubbing against desk",
+     "n": ""
+    },
+    {
+     "t": "Fasten fridge to cabinet with screws",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "601": {
+   "items": [
+    {
+     "t": "Secure fridge with screws",
+     "n": ""
+    },
+    {
+     "t": "Lav faucet needs to be replaced.",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "602": {
+   "items": [
+    {
+     "t": "Lav faucet needs to be replaced.",
+     "n": ""
+    },
+    {
+     "t": "Ceiling finish repair at bathroom",
+     "n": ""
+    }
+   ],
+   "note": "Room needs to be down for 2 days"
+  },
+  "604": {
+   "items": [
+    {
+     "t": "TIghten/ Replace toilet seat",
+     "n": ""
+    },
+    {
+     "t": "Note: Wrong floor lamp in room (Room has GST-506)",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "606": {
+   "items": [
+    {
+     "t": "No owner go-back task listed",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "607": {
+   "items": [
+    {
+     "t": "Need towel hook at shower",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "608": {
+   "items": [
+    {
+     "t": "Investigate toilet",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "609": {
+   "items": [
+    {
+     "t": "Door frame repair and paint finish at entry door frame",
+     "n": ""
+    },
+    {
+     "t": "Wall cleaning in WC room",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "610": {
+   "items": [
+    {
+     "t": "Secure fridge with screws",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up behind WC",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "611": {
+   "items": [
+    {
+     "t": "Paint touch up above WC",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "612": {
+   "items": [
+    {
+     "t": "Spring loaded hinge needs to be tighten or replaced. (Door does not close)",
+     "n": ""
+    },
+    {
+     "t": "Repair metal trim at floor of window",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "613": {
+   "items": [
+    {
+     "t": "Tighten lav faucet handle",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "614": {
+   "items": [
+    {
+     "t": "No owner go-back task listed",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "615": {
+   "items": [
+    {
+     "t": "Touch up desk top chip",
+     "n": ""
+    },
+    {
+     "t": "Re-Caulk tub",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "616": {
+   "items": [
+    {
+     "t": "Entry door hinges are sqeaking",
+     "n": ""
+    },
+    {
+     "t": "Iron holder missing",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "617": {
+   "items": [
+    {
+     "t": "Re-grout wall tile at shower",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "618": {
+   "items": [
+    {
+     "t": "No owner go-back task listed",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "619": {
+   "items": [
+    {
+     "t": "Missing strike plate at entry",
+     "n": ""
+    },
+    {
+     "t": "Install clock radio properly",
+     "n": ""
+    },
+    {
+     "t": "Grommets missing at night stands",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "621": {
+   "items": [
+    {
+     "t": "Secure fridge with screws",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "622": {
+   "items": [
+    {
+     "t": "Fridge needs to be scrfewed dow",
+     "n": ""
+    },
+    {
+     "t": "silicone at top of vanity countertop",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "623": {
+   "items": [
+    {
+     "t": "Entry door strike plate missing",
+     "n": ""
+    },
+    {
+     "t": "Room smell is off putting",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "624": {
+   "items": [
+    {
+     "t": "Shower cleanliness",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "701": {
+   "items": [
+    {
+     "t": "Adjust faucet handle at lav",
+     "n": ""
+    },
+    {
+     "t": "Tighten vanity pulls",
+     "n": ""
+    },
+    {
+     "t": "Grout at shower",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "702": {
+   "items": [
+    {
+     "t": "Tighten vanity pulls",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "704": {
+   "items": [
+    {
+     "t": "Replace lav faucet (rusted)",
+     "n": ""
+    },
+    {
+     "t": "Secure fridge with screws",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "705": {
+   "items": [
+    {
+     "t": "shower valve repair",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "706": {
+   "items": [
+    {
+     "t": "Fix wall tile and mirror trim at right of shower damn.",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "707": {
+   "items": [
+    {
+     "t": "Adjust WC door",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "708": {
+   "items": [
+    {
+     "t": "Paint touch ups at entry",
+     "n": ""
+    },
+    {
+     "t": "Secure firdge with screws",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "709": {
+   "items": [
+    {
+     "t": "Secure firdge with screws",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "710": {
+   "items": [
+    {
+     "t": "Replace faucet",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "711": {
+   "items": [
+    {
+     "t": "Refinish bathtub",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "712": {
+   "items": [
+    {
+     "t": "Secure firdge with screws",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "713": {
+   "items": [
+    {
+     "t": "Refinish bathtub",
+     "n": ""
+    },
+    {
+     "t": "Secure firdge with screws",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "714": {
+   "items": [
+    {
+     "t": "Door sweep at connecting door",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "715": {
+   "items": [
+    {
+     "t": "Secure firdge with screws",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up entry door",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "716": {
+   "items": [
+    {
+     "t": "Paint touch up at bath and entry door",
+     "n": ""
+    },
+    {
+     "t": "Door sweep",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "717": {
+   "items": [
+    {
+     "t": "Grout at shower",
+     "n": ""
+    },
+    {
+     "t": "Adjust connecting door",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "718": {
+   "items": [
+    {
+     "t": "Clock radio cord management",
+     "n": ""
+    },
+    {
+     "t": "Remove clock radio security cable wall",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "719": {
+   "items": [
+    {
+     "t": "Clock radio cord management/ installation",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "720": {
+   "items": [
+    {
+     "t": "adjust spring hinges",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "721": {
+   "items": [
+    {
+     "t": "Door strike",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "722": {
+   "items": [
+    {
+     "t": "Epoxy of of tile at shower damn",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "723": {
+   "items": [
+    {
+     "t": "Base tile needs grout under mirror",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "724": {
+   "items": [
+    {
+     "t": "Toilet switch paint clean",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "801": {
+   "items": [
+    {
+     "t": "Secure fridge with additional screws (other side)",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "802": {
+   "items": [
+    {
+     "t": "Secure fridge with additional screws (other side)",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up entry door ext",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "803": {
+   "items": [
+    {
+     "t": "Paint touch up beside wardrobe cabinet",
+     "n": ""
+    },
+    {
+     "t": "Secure fridge with screws",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "804": {
+   "items": [
+    {
+     "t": "Secure fridge with screws",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "806": {
+   "items": [
+    {
+     "t": "Towel hook in shower all 7 stack",
+     "n": ""
+    },
+    {
+     "t": "Repair window shades",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "808": {
+   "items": [
+    {
+     "t": "Touchup paint back side of the main door",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "809": {
+   "items": [
+    {
+     "t": "Touch up paint bathroom door",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "812": {
+   "items": [
+    {
+     "t": "Secure fridge with additional screw at other side",
+     "n": ""
+    },
+    {
+     "t": "Move clock radio to other night stand",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "813": {
+   "items": [
+    {
+     "t": "Secure fridge with additional screw at other side",
+     "n": ""
+    },
+    {
+     "t": "Adjust connecting door. repair damage from rubbing",
+     "n": ""
+    },
+    {
+     "t": "Caulking around tub",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "814": {
+   "items": [
+    {
+     "t": "Cable management for clock",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "816": {
+   "items": [
+    {
+     "t": "Baseboard paint by closet",
+     "n": ""
+    },
+    {
+     "t": "Rollup shade needs to be replaced.",
+     "n": ""
+    },
+    {
+     "t": "Secure fridge with additional screws",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "817": {
+   "items": [
+    {
+     "t": "Shave/ adjust connecting door",
+     "n": ""
+    },
+    {
+     "t": "Secure fridge with additional screws",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "818": {
+   "items": [
+    {
+     "t": "Clock radio cord management. Steel cable screwed to wall?",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "819": {
+   "items": [
+    {
+     "t": "Pot",
+     "n": ""
+    },
+    {
+     "t": "Secure fridge with screws",
+     "n": ""
+    },
+    {
+     "t": "fix entry down light",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "821": {
+   "items": [
+    {
+     "t": "Clock radio management",
+     "n": ""
+    },
+    {
+     "t": "Secure fridge with additional screws",
+     "n": ""
+    },
+    {
+     "t": "towel hook",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "823": {
+   "items": [
+    {
+     "t": "Secure fridge with additional screws",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "901": {
+   "items": [
+    {
+     "t": "Wrong clock radio",
+     "n": ""
+    },
+    {
+     "t": "Secure fridge",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "902": {
+   "items": [
+    {
+     "t": "Sconce shade",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "903": {
+   "items": [
+    {
+     "t": "Left sensor bad at left closet wardrobe",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "904": {
+   "items": [
+    {
+     "t": "Secure fridge with additional screw",
+     "n": ""
+    },
+    {
+     "t": "Replace escutcheon at WC water supply",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up at column",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "905": {
+   "items": [
+    {
+     "t": "Secure fridge with additional screw",
+     "n": ""
+    },
+    {
+     "t": "Adjustment spring hinge at entry",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "906": {
+   "items": [
+    {
+     "t": "Repair ceiling damage",
+     "n": ""
+    }
+   ],
+   "note": "Room needs to be down for 2 days"
+  },
+  "907": {
+   "items": [
+    {
+     "t": "Shave connecting",
+     "n": ""
+    },
+    {
+     "t": "Pocket door paint touch up",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "908": {
+   "items": [
+    {
+     "t": "Secure fridge with screws",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up on wall near desk",
+     "n": ""
+    },
+    {
+     "t": "Wall touch up and paint around frame interior at entry door",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "909": {
+   "items": [
+    {
+     "t": "Secure fridge with screws",
+     "n": ""
+    },
+    {
+     "t": "Trim loose VWC threads at desk",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up at interior entry door",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "910": {
+   "items": [
+    {
+     "t": "Paint touch up at entry door. (interior and exterior)",
+     "n": ""
+    },
+    {
+     "t": "Secure fridge with additional screws",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "911": {
+   "items": [
+    {
+     "t": "Secure fridge with screws",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "912": {
+   "items": [
+    {
+     "t": "New clock",
+     "n": ""
+    },
+    {
+     "t": "Fridfe anchor",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "913": {
+   "items": [
+    {
+     "t": "Paint touch up at entry door. (interior and exterior)",
+     "n": ""
+    },
+    {
+     "t": "Paint touch at entry walls",
+     "n": ""
+    },
+    {
+     "t": "Bed base touch up",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "914": {
+   "items": [
+    {
+     "t": "Secure fridge with screws",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "915": {
+   "items": [
+    {
+     "t": "Secure fridge with additional screws",
+     "n": ""
+    },
+    {
+     "t": "Replace lav faucet",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up behind toilet",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "916": {
+   "items": [
+    {
+     "t": "Grout missing from tile walls",
+     "n": ""
+    },
+    {
+     "t": "Secure fridge with additional screws",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up at bath door",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "917": {
+   "items": [
+    {
+     "t": "Touch up entry door extrerior",
+     "n": ""
+    },
+    {
+     "t": "Adjust/Shave connecting",
+     "n": ""
+    },
+    {
+     "t": "Secure fridge with additional screws",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "918": {
+   "items": [
+    {
+     "t": "Missing entry strike plate",
+     "n": ""
+    },
+    {
+     "t": "Entry door does not close on its own.",
+     "n": ""
+    },
+    {
+     "t": "Replace left side sconce shade",
+     "n": ""
+    },
+    {
+     "t": "Right HB sconce does not turn on",
+     "n": ""
+    },
+    {
+     "t": "Cord management at clock radio",
+     "n": ""
+    },
+    {
+     "t": "Remove comand strips from shower and clean",
+     "n": ""
+    },
+    {
+     "t": "Remove metal wire attached to clock radio",
+     "n": ""
+    },
+    {
+     "t": "Secure fridge with additional screws",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "919": {
+   "items": [
+    {
+     "t": "Secure fridge with screws",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "920": {
+   "items": [
+    {
+     "t": "Touch up paint throughout",
+     "n": ""
+    },
+    {
+     "t": "Secure fridge with screws",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "921": {
+   "items": [
+    {
+     "t": "Missing entry strike plate",
+     "n": ""
+    },
+    {
+     "t": "Secure fridge with additional screws",
+     "n": ""
+    },
+    {
+     "t": "Toilet running",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "922": {
+   "items": [
+    {
+     "t": "Adjust/shave connecting day",
+     "n": ""
+    },
+    {
+     "t": "Secure fridge with additional screws",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "923": {
+   "items": [
+    {
+     "t": "Secure fridge with screws",
+     "n": ""
+    },
+    {
+     "t": "Connecting door floor stop missing a screw",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "924": {
+   "items": [
+    {
+     "t": "Secure fridge with screws",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up by entry",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1001": {
+   "items": [
+    {
+     "t": "Repair wall finish right of wardrobe",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up entry ext door",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1002": {
+   "items": [
+    {
+     "t": "Wrong alarm clock",
+     "n": ""
+    },
+    {
+     "t": "Shave connecting door",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1003": {
+   "items": [
+    {
+     "t": "Replace t-sat (level unit)",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1004": {
+   "items": [
+    {
+     "t": "Secure shower glass panel. (bracket piece ordered by GC has been lost again)",
+     "n": ""
+    },
+    {
+     "t": "Ceiling repair and touch in shower ceiling",
+     "n": "Room needs to be down for 2 days - Check for completion"
+    }
+   ],
+   "note": ""
+  },
+  "1005": {
+   "items": [
+    {
+     "t": "Paint touch up at entry door",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1006": {
+   "items": [
+    {
+     "t": "Paint touch up next to vanity",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up at bedroom walls",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1007": {
+   "items": [
+    {
+     "t": "Paint touch up pocket door",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1008": {
+   "items": [
+    {
+     "t": "Paint touch up at basebaords",
+     "n": ""
+    },
+    {
+     "t": "Adjust bathroom door. Rubbing",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1009": {
+   "items": [
+    {
+     "t": "Shave connecting door",
+     "n": ""
+    },
+    {
+     "t": "Paint touch at bedroom wall",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1010": {
+   "items": [
+    {
+     "t": "Secure fridge with additional screw",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1011": {
+   "items": [
+    {
+     "t": "Replace entry door stop",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1012": {
+   "items": [
+    {
+     "t": "Paint touch up at entry door",
+     "n": ""
+    },
+    {
+     "t": "Address connecting door. Does not open. Needs to be shaved/adjusted",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up around connecting door",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1013": {
+   "items": [
+    {
+     "t": "Wrong clock radio",
+     "n": ""
+    },
+    {
+     "t": "Adjust lav faucet handles",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up at entry door and walls",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1014": {
+   "items": [
+    {
+     "t": "Adjust spring hinge at entry door (does not close)",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up in bedroom",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1015": {
+   "items": [
+    {
+     "t": "Paint touch up at entry door",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1016": {
+   "items": [
+    {
+     "t": "Replace toilet seat",
+     "n": ""
+    },
+    {
+     "t": "Missing shower caddy",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up at entry door and bath door",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1017": {
+   "items": [
+    {
+     "t": "Missing shower caddy (black)",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1019": {
+   "items": [
+    {
+     "t": "Wrong clock radio",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up at entry door",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1022": {
+   "items": [
+    {
+     "t": "Entry door touch paint",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1023": {
+   "items": [
+    {
+     "t": "Bath door missing frame bumpers on vanity side",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1024": {
+   "items": [
+    {
+     "t": "Touch up entry door",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1101": {
+   "items": [
+    {
+     "t": "Add additinal screw to secure fridge",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up bathroom",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1103": {
+   "items": [
+    {
+     "t": "Touch up paint on door frame at security latch",
+     "n": ""
+    },
+    {
+     "t": "Toilet handle needs to be secured",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1104": {
+   "items": [
+    {
+     "t": "Scratch on floor lamp",
+     "n": ""
+    },
+    {
+     "t": "Secure fridge with screws",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1105": {
+   "items": [
+    {
+     "t": "Secure fridge with additional screw",
+     "n": ""
+    },
+    {
+     "t": "Ceiling damage above bed",
+     "n": ""
+    }
+   ],
+   "note": "Room needs to be down for 2 days"
+  },
+  "1106": {
+   "items": [
+    {
+     "t": "Paint touch in bathroom",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1110": {
+   "items": [
+    {
+     "t": "Secure fridge with additional screw",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1111": {
+   "items": [
+    {
+     "t": "Secure fridge with additional screw",
+     "n": ""
+    },
+    {
+     "t": "Re-grout at tub",
+     "n": ""
+    },
+    {
+     "t": "Toilet flush level needs adjustment",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1113": {
+   "items": [
+    {
+     "t": "Secure fridge with additional screw",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1114": {
+   "items": [
+    {
+     "t": "Secure fridge with additional screw",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up above toilet",
+     "n": ""
+    },
+    {
+     "t": "Drywall repair at corner in entry",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1115": {
+   "items": [
+    {
+     "t": "Secure fridge with screws",
+     "n": ""
+    },
+    {
+     "t": "Refinish tub",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1116": {
+   "items": [
+    {
+     "t": "Secure fridge with additional screw",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1117": {
+   "items": [
+    {
+     "t": "Remove non approved shower caddy",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1119": {
+   "items": [
+    {
+     "t": "Missing shower caddy at master bath",
+     "n": ""
+    },
+    {
+     "t": "Replace blank cover plates in master bath with cover plates that match wall color",
+     "n": ""
+    },
+    {
+     "t": "Cable managment for alarm clock in bedroom",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1121": {
+   "items": [
+    {
+     "t": "Secure fridge with additional screw",
+     "n": ""
+    },
+    {
+     "t": "Re-caulk bath tub",
+     "n": ""
+    },
+    {
+     "t": "Shave door at WC",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1122": {
+   "items": [
+    {
+     "t": "Add bench at bed to missing FF&E list",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1123": {
+   "items": [
+    {
+     "t": "Recaulk tub",
+     "n": ""
+    },
+    {
+     "t": "Replace shower currtain",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1201": {
+   "items": [
+    {
+     "t": "Screw fidge down with 2 screws",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1202": {
+   "items": [
+    {
+     "t": "Screw fridge down in cabinet",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1203": {
+   "items": [
+    {
+     "t": "Screw fridge down at cabinet",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1204": {
+   "items": [
+    {
+     "t": "Chip in tile where floor hinge was located",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1205": {
+   "items": [
+    {
+     "t": "Iron and board holder",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1208": {
+   "items": [
+    {
+     "t": "Screw down fridge",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1209": {
+   "items": [
+    {
+     "t": "Screw down fridge",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1210": {
+   "items": [
+    {
+     "t": "Remove adhesive stickers from ceiling above bed",
+     "n": ""
+    },
+    {
+     "t": "Door paint touch up entry side",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1211": {
+   "items": [
+    {
+     "t": "Grease entry door hinges",
+     "n": ""
+    },
+    {
+     "t": "Tub needs new caulking around edge",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1212": {
+   "items": [
+    {
+     "t": "Fridge needs to be screwed down with one more screw",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1213": {
+   "items": [
+    {
+     "t": "Desk lamp need bulb",
+     "n": ""
+    },
+    {
+     "t": "Connecting doors need to be shaved",
+     "n": ""
+    },
+    {
+     "t": "Touch up wal paint under entry artwork",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1214": {
+   "items": [
+    {
+     "t": "Connecting door needs to be shaved",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1215": {
+   "items": [
+    {
+     "t": "Bathroom Caulking",
+     "n": ""
+    },
+    {
+     "t": "Paint at main door jamb",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1216": {
+   "items": [
+    {
+     "t": "Fridge needs to be screwed down in teh cabinet",
+     "n": ""
+    },
+    {
+     "t": "Mirror trim lowerleft side",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1217": {
+   "items": [
+    {
+     "t": "Fridge needs another screw to be secure",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1219": {
+   "items": [
+    {
+     "t": "Flat plug approach approved for living area. Hotel will procure similar flat plugs for other suites",
+     "n": ""
+    },
+    {
+     "t": "Sleeping area needs cord management around dresser",
+     "n": ""
+    },
+    {
+     "t": "Shower needs caddy (repair or replace)",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1221": {
+   "items": [
+    {
+     "t": "Paint touch up",
+     "n": ""
+    },
+    {
+     "t": "caulking around tub",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1222": {
+   "items": [
+    {
+     "t": "Connecting doors needs shaving",
+     "n": ""
+    },
+    {
+     "t": "Touch Up Entry Door",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1223": {
+   "items": [
+    {
+     "t": "Caulking at bathroom",
+     "n": ""
+    },
+    {
+     "t": "Add screw to ther foot to secure fridge",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1224": {
+   "items": [
+    {
+     "t": "Desk lamp needs bulb",
+     "n": ""
+    },
+    {
+     "t": "Touch paint at foyer",
+     "n": ""
+    },
+    {
+     "t": "Wrong clock radio",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1401": {
+   "items": [
+    {
+     "t": "Secure hand towel ring",
+     "n": ""
+    },
+    {
+     "t": "Patch through screw holes from iron board holder inside wardrobe",
+     "n": ""
+    },
+    {
+     "t": "Vanity drawer knob loose",
+     "n": "Needs longer machine screws"
+    }
+   ],
+   "note": ""
+  },
+  "1402": {
+   "items": [
+    {
+     "t": "Wrong alarm clock",
+     "n": ""
+    },
+    {
+     "t": "Touch up bed base",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1403": {
+   "items": [
+    {
+     "t": "Connecting does not shut/open properly",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1404": {
+   "items": [
+    {
+     "t": "Entry door sticks. will not open without force (investigate0",
+     "n": ""
+    },
+    {
+     "t": "Replace escutcheon at WC supply line",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1405": {
+   "items": [
+    {
+     "t": "Missing desk lamp",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1406": {
+   "items": [
+    {
+     "t": "Check spec sheet for lounge pillow at chair",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1407": {
+   "items": [
+    {
+     "t": "Unclog sink drain",
+     "n": ""
+    },
+    {
+     "t": "Entry ceiling touch up",
+     "n": ""
+    },
+    {
+     "t": "Towel rack/bar solution at 07 stack above 10",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up at entry door",
+     "n": ""
+    }
+   ],
+   "note": "Room needs to be down for 2 days"
+  },
+  "1408": {
+   "items": [
+    {
+     "t": "Chrome trim missing at foyer wall mirror",
+     "n": ""
+    },
+    {
+     "t": "Wrong clock",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1409": {
+   "items": [
+    {
+     "t": "Paint touch up at entry wall",
+     "n": ""
+    },
+    {
+     "t": "Desk lamp set screw",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1410": {
+   "items": [
+    {
+     "t": "Replace WC escutcheon",
+     "n": ""
+    },
+    {
+     "t": "Grout repair near shower drain",
+     "n": ""
+    },
+    {
+     "t": "Change lamp globe",
+     "n": ""
+    },
+    {
+     "t": "Undercut/ trim entry door for better clearance",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1411": {
+   "items": [
+    {
+     "t": "Desk lamp set screw",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1412": {
+   "items": [
+    {
+     "t": "Desk lamp replace globe and relocate",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1413": {
+   "items": [
+    {
+     "t": "Caulking at tub transition",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1415": {
+   "items": [
+    {
+     "t": "Wrong clock radio",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1417": {
+   "items": [
+    {
+     "t": "Wall touch up at foyer",
+     "n": ""
+    },
+    {
+     "t": "Paint touch up at baseboards",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1419": {
+   "items": [
+    {
+     "t": "Move dresser closer to the column wall in master",
+     "n": ""
+    },
+    {
+     "t": "Missing clock radio",
+     "n": ""
+    },
+    {
+     "t": "Replace toilet seat in half bath",
+     "n": ""
+    },
+    {
+     "t": "Signage at door for guest ops",
+     "n": ""
+    },
+    {
+     "t": "Console lamp cord correction to fix bump in rug",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1421": {
+   "items": [
+    {
+     "t": "Paint touch up including above tile base in WC room",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1423": {
+   "items": [
+    {
+     "t": "Bottom trim missing from mirror",
+     "n": "Trim not missing but wrap can be applied for improved aesthetic"
+    },
+    {
+     "t": "Wrong clock radio",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1501": {
+   "items": [
+    {
+     "t": "Ceiling repair over bed (leak)",
+     "n": ""
+    },
+    {
+     "t": "Reattach blackout",
+     "n": ""
+    },
+    {
+     "t": "Bath ceiling repair over shower",
+     "n": ""
+    },
+    {
+     "t": "Loose vanity faucet",
+     "n": "Plumbing is loose in the wall"
+    },
+    {
+     "t": "Clean paint from shower arm",
+     "n": ""
+    }
+   ],
+   "note": "Room needs be down 2 days for ceiling repairs"
+  },
+  "1502": {
+   "items": [
+    {
+     "t": "Security latch strike plate",
+     "n": ""
+    },
+    {
+     "t": "Incorrect alarm clock",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1503": {
+   "items": [
+    {
+     "t": "Security latch strike plate",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1508": {
+   "items": [
+    {
+     "t": "Globe for desk lamp",
+     "n": ""
+    },
+    {
+     "t": "Secure access panels",
+     "n": ""
+    },
+    {
+     "t": "Secure towel bar in bath",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1509": {
+   "items": [
+    {
+     "t": "Security latch strike plate",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1510": {
+   "items": [
+    {
+     "t": "Secure access panel in WC room",
+     "n": ""
+    },
+    {
+     "t": "Secure access panel in entry",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1511": {
+   "items": [
+    {
+     "t": "Wrong alarm clock",
+     "n": ""
+    },
+    {
+     "t": "Broken down light at entry",
+     "n": ""
+    },
+    {
+     "t": "Secure towel bar",
+     "n": ""
+    },
+    {
+     "t": "Secure robe hook",
+     "n": "Check for materials"
+    },
+    {
+     "t": "Tighten escutcheon door trim at WC door",
+     "n": ""
+    },
+    {
+     "t": "Security latch strike plate",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1512": {
+   "items": [
+    {
+     "t": "Desk lamp (bulb)",
+     "n": ""
+    },
+    {
+     "t": "Secure access panel in WC room",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1513": {
+   "items": [
+    {
+     "t": "Wrong alarm clock",
+     "n": ""
+    },
+    {
+     "t": "Desk lamp globe missing",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1514": {
+   "items": [
+    {
+     "t": "Security latch strike plate",
+     "n": ""
+    },
+    {
+     "t": "Desk lamp globe missing (and sensor)",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1515": {
+   "items": [
+    {
+     "t": "Security latch strike plate not secured",
+     "n": ""
+    },
+    {
+     "t": "Secure AP at entry",
+     "n": ""
+    },
+    {
+     "t": "Unclog drain at vanity",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1516": {
+   "items": [
+    {
+     "t": "Secure all access panels",
+     "n": ""
+    },
+    {
+     "t": "Security latch strike plate not secured",
+     "n": ""
+    },
+    {
+     "t": "Secure blackout drape snaps",
+     "n": ""
+    },
+    {
+     "t": "Replace vanity faucet",
+     "n": "Material needs to be procured"
+    },
+    {
+     "t": "Desk lamp missing",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1519": {
+   "items": [
+    {
+     "t": "Ceiling repair (investigate above)",
+     "n": ""
+    },
+    {
+     "t": "Console lamp cord correction to fix bump in rug",
+     "n": ""
+    },
+    {
+     "t": "Tv cord cable management at living area",
+     "n": ""
+    },
+    {
+     "t": "Procure and install amenity shelf at shower in double room",
+     "n": ""
+    },
+    {
+     "t": "Hang Remote controls",
+     "n": ""
+    },
+    {
+     "t": "Secure, access panel in double room bathroom",
+     "n": ""
+    },
+    {
+     "t": "Secure access panel at master bath vanity, right side",
+     "n": ""
+    },
+    {
+     "t": "Provide signage for power instructions",
+     "n": ""
+    },
+    {
+     "t": "Install new floor box plate right side of living area rug.",
+     "n": ""
+    },
+    {
+     "t": "Iron board and iron holder missing at DBL room.",
+     "n": ""
+    },
+    {
+     "t": "Chrome trim missing from top of mirror between master bath and room",
+     "n": "Material"
+    },
+    {
+     "t": "Touch up paint right of closet",
+     "n": ""
+    },
+    {
+     "t": "Secure snaps at drapes",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1521": {
+   "items": [
+    {
+     "t": "Touch up paint right of closet",
+     "n": ""
+    },
+    {
+     "t": "Secure snaps at drapes",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1522": {
+   "items": [
+    {
+     "t": "No owner go-back task listed",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1523": {
+   "items": [
+    {
+     "t": "Wrong alarm clock",
+     "n": ""
+    },
+    {
+     "t": "Secure drape buttons",
+     "n": ""
+    }
+   ],
+   "note": ""
+  },
+  "1524": {
+   "items": [
+    {
+     "t": "Secure hand towel bar",
+     "n": ""
+    },
+    {
+     "t": "Attach mini bar fridge",
+     "n": ""
+    }
+   ],
+   "note": ""
+  }
+ },
+ "corridor": {
+  "14th Floor": [],
+  "11th Floor": [
+   {
+    "t": "Patch wall VWC around old microwave and soap dispenser",
+    "n": ""
+   }
+  ],
+  "10th Floor": [
+   {
+    "t": "Replace door bumper at storage room between 1016 and 1017",
+    "n": ""
+   },
+   {
+    "t": "Repair and touch up wall near 1017/1018",
+    "n": ""
+   }
+  ],
+  "9th Floor": [
+   {
+    "t": "Wall repair and touch up outside 920",
+    "n": ""
+   }
+  ],
+  "8th Floor": [
+   {
+    "t": "Paint corner guards in corridor by rm 817",
+    "n": ""
+   }
+  ],
+  "7th Floor": [
+   {
+    "t": "All 07 and 04 stacks need a towel hook in the shower",
+    "n": ""
+   },
+   {
+    "t": "Corner guard touch up",
+    "n": ""
+   },
+   {
+    "t": "Paint FEC near 18",
+    "n": ""
+   },
+   {
+    "t": "Corner stack shower needs towel hook",
+    "n": ""
+   }
+  ],
+  "6th Floor": [
+   {
+    "t": "Touch corner guard at elevator lobby",
+    "n": ""
+   },
+   {
+    "t": "Wall touch up between 14 and 15",
+    "n": ""
+   },
+   {
+    "t": "Paint touch up ice machine access panel stair 2",
+    "n": ""
+   },
+   {
+    "t": "Corner guard at ice machine stair 2",
+    "n": ""
+   }
+  ],
+  "5th Floor": [
+   {
+    "t": "Patch wall in ice machine room",
+    "n": ""
+   }
+  ]
+ },
+ "floorNotes": {
+  "15th Floor": "Touch up between 1523 and 1524 corridor"
+ },
+ "public": {
+  "4th Floor Meeting": [
+   {
+    "t": "Touch up laminate damage at all doors",
+    "n": ""
+   }
+  ],
+  "Prefunciton A": [
+   {
+    "t": "Adjust down lighting position where needed",
+    "n": ""
+   },
+   {
+    "t": "Clean wallcovering above digital signage (from fans - add to hotel PM)",
+    "n": ""
+   },
+   {
+    "t": "Carpet spot clean",
+    "n": ""
+   }
+  ],
+  "Prefunction B": [
+   {
+    "t": "Address condensation at ceiling vent outside studio 3",
+    "n": ""
+   },
+   {
+    "t": "Clean baseboards",
+    "n": ""
+   },
+   {
+    "t": "Change black receptacles to white",
+    "n": ""
+   }
+  ],
+  "Studio 1": [
+   {
+    "t": "Water leaks",
+    "n": ""
+   },
+   {
+    "t": "Concelead sprinkler head missing",
+    "n": ""
+   },
+   {
+    "t": "Paint touch up",
+    "n": ""
+   }
+  ],
+  "Studio 3/4": [
+   {
+    "t": "Clean paint from studio 4 side airwall",
+    "n": ""
+   },
+   {
+    "t": "Replace bulbs at down lights",
+    "n": ""
+   },
+   {
+    "t": "Identify art to be hung",
+    "n": ""
+   },
+   {
+    "t": "Address floor receptacles (clean faceplates)",
+    "n": ""
+   },
+   {
+    "t": "Paint touch up at all walls",
+    "n": ""
+   },
+   {
+    "t": "Replace cracked glass panel on Studio 4 side",
+    "n": ""
+   }
+  ],
+  "Boardroom": [
+   {
+    "t": "Conference needs cutouts under base legs to sit flush over floor boxes",
+    "n": ""
+   },
+   {
+    "t": "Address water leaks at windows and entry",
+    "n": ""
+   },
+   {
+    "t": "Caulking",
+    "n": ""
+   }
+  ],
+  "Womens restroom @ 4th Floor": [
+   {
+    "t": "Modify modesty panel for access to soap dispenser",
+    "n": ""
+   },
+   {
+    "t": "Address cracked countertop",
+    "n": ""
+   },
+   {
+    "t": "Tighten access panels",
+    "n": ""
+   },
+   {
+    "t": "Change scenting machine to JW",
+    "n": ""
+   },
+   {
+    "t": "Service exhaust fan - noisy",
+    "n": ""
+   }
+  ],
+  "Ballroom": [
+   {
+    "t": "Baseboard paint touch up",
+    "n": ""
+   },
+   {
+    "t": "Fix maglock above entry door",
+    "n": ""
+   },
+   {
+    "t": "Secure ceiling access panel at heart of house entry",
+    "n": ""
+   },
+   {
+    "t": "Remove heaters from back hallway to proper storage location",
+    "n": ""
+   },
+   {
+    "t": "Clean white caulking on seam at column",
+    "n": ""
+   },
+   {
+    "t": "Replace down light bulb at entry wall niche",
+    "n": ""
+   },
+   {
+    "t": "Address all ceiling lighting.",
+    "n": "Specifically"
+   },
+   {
+    "t": "Airwall maintenance",
+    "n": ""
+   },
+   {
+    "t": "Address metal trim where paint is peeling",
+    "n": ""
+   },
+   {
+    "t": "Prefunction Arbor",
+    "n": ""
+   },
+   {
+    "t": "Missing cove lights",
+    "n": ""
+   }
+  ],
+  "Arbor Room": [
+   {
+    "t": "Replace rubber gasket on 1st panel airwall",
+    "n": ""
+   }
+  ],
+  "Haven": [
+   {
+    "t": "Look at back elevator function",
+    "n": ""
+   },
+   {
+    "t": "Clear the stair landing",
+    "n": ""
+   }
+  ],
+  "Guest Elevators": [
+   {
+    "t": "No owner go-back task listed",
+    "n": ""
+   }
+  ],
+  "Pool Bar / Pool deck": [
+   {
+    "t": "Fix cover plate in men's handicap grab bar",
+    "n": ""
+   },
+   {
+    "t": "Install hook in baby changing station",
+    "n": ""
+   },
+   {
+    "t": "Clean paint in fire alarm device in toilet",
+    "n": ""
+   },
+   {
+    "t": "Add scent refill to men's bathroom",
+    "n": ""
+   },
+   {
+    "t": "Clean begging the mirror women's bathroom",
+    "n": ""
+   },
+   {
+    "t": "Replace ceiling tile women's ada stall",
+    "n": "Potential leak. Does hotel have the tiles"
+   },
+   {
+    "t": "Concealed sprinkler cover missing in bathroom corridor",
+    "n": ""
+   }
+  ],
+  "Executive Lounge": [
+   {
+    "t": "Check signal for tv with \"grainy\" signal. Confirmed with Richard W that signal seemed fine. Cable management needed behind TV.",
+    "n": ""
+   },
+   {
+    "t": "Mirrors in WC stalls are delaminating",
+    "n": "Mirror trim or glazer"
+   },
+   {
+    "t": "CO2 filter change maintenance process at water tap",
+    "n": ""
+   },
+   {
+    "t": "Concealed head cover missing at WC",
+    "n": ""
+   },
+   {
+    "t": "Repair ceiling around upper pivot hinge at glass entry door",
+    "n": ""
+   }
+  ],
+  "Reception": [
+   {
+    "t": "Side glass door gasket needs to be replaced",
+    "n": ""
+   },
+   {
+    "t": "Corner guards at luggage storage",
+    "n": ""
+   },
+   {
+    "t": "Missing access panel in luggage storage",
+    "n": ""
+   }
+  ],
+  "JW Market / Restaurant": [
+   {
+    "t": "Upholstery cleaning",
+    "n": ""
+   },
+   {
+    "t": "Address hinges at exterior DBL door entry",
+    "n": ""
+   },
+   {
+    "t": "Film at DBL entry doors",
+    "n": "Film needs to be replaced - May not be performed by Halsey"
+   },
+   {
+    "t": "Address Art",
+    "n": "Fix and rehang art work"
+   },
+   {
+    "t": "Wine fridges: move to correct location remove styrofoam beneath and install correct feet",
+    "n": "DBL Check with operations"
+   }
+  ],
+  "Lobby Restrooms": [
+   {
+    "t": "Modify modesty panel for access to soap dispenser",
+    "n": "Panels are removable as installed."
+   },
+   {
+    "t": "Adjust toilet",
+    "n": ""
+   },
+   {
+    "t": "Secure recessed trash cans",
+    "n": ""
+   },
+   {
+    "t": "Check flushometer sensors at WCs",
+    "n": ""
+   },
+   {
+    "t": "Tighten toilet seat at women's stall",
+    "n": ""
+   },
+   {
+    "t": "Address stone tile floor and wall finish",
+    "n": ""
+   },
+   {
+    "t": "Repair cove base under recessed waste bin at men's",
+    "n": ""
+   },
+   {
+    "t": "Replace burnt out bulbs at lit niches",
+    "n": ""
+   },
+   {
+    "t": "Replace diffusers at backlit niches",
+    "n": ""
+   },
+   {
+    "t": "Ceiling repair at backlit niches",
+    "n": ""
+   },
+   {
+    "t": "Repair drinking fountain or replace with bottle filler combo",
+    "n": ""
+   }
+  ],
+  "Ledger - lobby bar": [
+   {
+    "t": "Secure hand sink",
+    "n": ""
+   },
+   {
+    "t": "Secure glass cooler",
+    "n": ""
+   },
+   {
+    "t": "Door hardware for Ice Machine room",
+    "n": ""
+   },
+   {
+    "t": "Cove lighting - needs dimming solution, currently the lighting is tied into the front desk",
+    "n": ""
+   }
+  ],
+  "Lobby": [
+   {
+    "t": "Address non- functioning reader board",
+    "n": "Inspect connections"
+   },
+   {
+    "t": "Solution requested for decorative finish at lower portion of radius walls. Applied finish is marking up vary easily and is difficult to clean.",
+    "n": "Halsey may be able to touch up. TS working with designer on solution"
+   }
+  ],
+  "Fitness Center": [
+   {
+    "t": "Collar for penetration at TV bracket",
+    "n": ""
+   },
+   {
+    "t": "Repair leak at ceiling near free weights and replace ceiling tile",
+    "n": "May require licensed plumber"
+   }
+  ],
+  "Spa": [
+   {
+    "t": "Patch ceiling at access panel above reception desk",
+    "n": ""
+   },
+   {
+    "t": "Men's locker room WC access panel",
+    "n": ""
+   },
+   {
+    "t": "Shower glass doors to be adjusted at women's",
+    "n": "Glazer is probably best option for repair"
+   }
+  ],
+  "Fiora Service bar": [],
+  "Exterior": []
+ }
+}
