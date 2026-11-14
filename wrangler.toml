@@ -1,0 +1,22 @@
+name = "jw-go-back-punch"
+main = "src/worker.js"
+compatibility_date = "2025-10-01"
+
+# Static app
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+# Shared state lives in one Durable Object (SQLite-backed, free plan OK)
+[[durable_objects.bindings]]
+name = "PUNCH"
+class_name = "Punch"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Punch"]
+
+[vars]
+# Team PIN the app asks for before it will save. Change it here (or set a
+# secret named PIN in the dashboard, which overrides this).
+PIN = "2026"
