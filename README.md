@@ -1,6 +1,9 @@
 # JW Atlanta – Owner Go-Back Punch
 
-Phone-first punch-list app for engineering go-backs at JW Marriott Atlanta: a 237-room matrix, one checklist per room (global checks + that room's own items from the Halsey owner back-punch schedule), per-room sign-off with initials. Several phones share one live board.
+Phone-first app for JW Marriott Atlanta with two tabs sharing one live board across phones:
+
+- **Go-Back Punch** – 237-room matrix, one checklist per room (global checks + that room's own items from the Halsey owner back-punch schedule), per-room sign-off with initials.
+- **Weekly Walk** – start a walk, mark public areas / hallways / spot-checked rooms as checked or log defects (category, severity, department, photos). Unfixed defects carry over into the next walk. Finishing a walk produces a shareable report at `/report/<walkId>` (and `/report/<walkId>.csv`).
 
 ## Layout
 - `public/index.html` – the whole app (self-contained, no build step)
