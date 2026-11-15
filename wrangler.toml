@@ -1,6 +1,7 @@
 name = "jw-go-back-punch"
 main = "src/worker.js"
 compatibility_date = "2025-10-01"
+workers_dev = true
 
 # Static app
 [assets]
