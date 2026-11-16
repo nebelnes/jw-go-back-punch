@@ -227,14 +227,18 @@ function reportHtml(w, carry) {
   const ds = allDefects(w);
   const areas = Object.entries(w.areas || {}).filter(([, a]) => a.ok || (a.defects || []).length).sort((a, b) => areaOrder(w, a[0]) - areaOrder(w, b[0]));
   const count = (arr, k) => arr.reduce((m, d) => (m[d[k] || '—'] = (m[d[k] || '—'] || 0) + 1, m), {});
-  const bySev = count(ds, 'sev'), byDept = count(ds, 'dept'), byCat = count(ds, 'cat');
+  const bySev = count(ds.filter((d) => d.sev), 'sev'), byDept = count(ds, 'dept');
   const pills = (m, cls) => Object.entries(m).sort((a, b) => b[1] - a[1]).map(([k, v]) => `<span class="pill ${cls ? cls(k) : ''}">${h(k)} <b>${v}</b></span>`).join(' ');
   const sevCls = (s) => ({ High: 'hi', Medium: 'md', Low: 'lo' }[s] || '');
   const defectRow = (d, showWalk) => `
     <div class="d ${d.fixed ? 'fixed' : ''}">
-      <div class="dh">${d.sev ? `<span class="sev ${sevCls(d.sev)}">${h(d.sev)}</span>` : ''}<span class="dt">${h(d.t)}${d.loc ? ` <span class="loc">— ${h(d.loc)}</span>` : ''}</span><b class="dept">${h(d.dept || '')}</b></div>
-      ${(d.photos || []).length ? '<div class="ph">' + d.photos.map((p) => `<a href="/api/photo/${h(p)}" target="_blank"><img src="/api/photo/${h(p)}" loading="lazy" alt=""></a>`).join('') + '</div>' : ''}
-      <div class="df"><span class="fx">${d.fixed ? '✓ Fixed ' + h(d.fixed.by) + ' · ' + fmtT(d.fixed.at) : ''}</span><span class="tm">${showWalk ? 'walk ' + h(d.walkDate) + ' · open ' + age(d.at) : fmtT(d.at) + (d.by ? ' · ' + h(d.by) : '')}</span></div>
+      <div class="pic">${(d.photos || []).length ? `<a href="/api/photo/${h(d.photos[0])}" target="_blank"><img src="/api/photo/${h(d.photos[0])}" loading="lazy" alt=""></a>${d.photos.length > 1 ? `<span class="more">+${d.photos.length - 1}</span>` : ''}` : '<span class="nopic">No photo</span>'}</div>
+      <div class="dc">
+        <div class="dh"><span class="area">${h(d.areaLabel)}${d.loc ? ' · ' + h(d.loc) : ''}</span>${d.sev ? `<span class="sev ${sevCls(d.sev)}">${h(d.sev)}</span>` : ''}<b class="dept">${h(d.dept || '')}</b></div>
+        <div class="dt">${h(d.t)}</div>
+        ${(d.photos || []).length > 1 ? '<div class="ph">' + d.photos.slice(1).map((p) => `<a href="/api/photo/${h(p)}" target="_blank"><img src="/api/photo/${h(p)}" loading="lazy" alt=""></a>`).join('') + '</div>' : ''}
+        <div class="df"><span class="fx">${d.fixed ? '✓ Fixed ' + h(d.fixed.by) + ' · ' + fmtT(d.fixed.at) : ''}</span><span class="tm">${showWalk ? 'walk ' + h(d.walkDate) + ' · open ' + age(d.at) : fmtT(d.at) + (d.by ? ' · ' + h(d.by) : '')}</span></div>
+      </div>
     </div>`;
   return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light only">
 <title>Weekly Walk ${h(w.date)} – JW Marriott Atlanta</title>
@@ -249,14 +253,21 @@ h1{font-size:22px;margin:0 0 2px}.sub{color:#6b6861;margin-bottom:14px}
 h2{font-size:16px;margin:26px 0 8px;padding-bottom:4px;border-bottom:2px solid #1c1b18}
 h3{font-size:15px;margin:16px 0 6px;display:flex;align-items:center;gap:8px}
 .ok{color:#2e7d44;font-size:12.5px;font-weight:600;border:1px solid #b8dfc3;background:#e6f4ea;border-radius:999px;padding:1px 9px}
-.d{border:1px solid #e2dfd8;border-radius:10px;padding:10px 12px;margin:6px 0;break-inside:avoid}
-.d.fixed{opacity:.65}.dh{display:flex;gap:8px;align-items:baseline}.dt{font-weight:600;flex:1}.loc{font-weight:400;color:#6b6861}.dept{flex:none;font-size:13.5px;white-space:nowrap}
-.sev{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:1px 7px;border-radius:5px;background:#eee}.sev.hi{background:#c0392b;color:#fff}.sev.md{background:#f6c453}.sev.lo{background:#dfe6ee}
-.df{display:flex;justify-content:space-between;align-items:baseline;margin-top:4px}.fx{font-size:12px;color:#2e7d44;font-weight:600}.tm{font-size:11.5px;color:#9b978e;margin-left:auto}
-.ph{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.ph img{width:110px;height:110px;object-fit:cover;border-radius:8px;border:1px solid #e2dfd8}
+.d{display:flex;gap:12px;border:1px solid #e2dfd8;border-radius:12px;padding:10px;margin:8px 0;break-inside:avoid;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.d.fixed{opacity:.6}
+.pic{flex:0 0 118px;position:relative}.pic img{width:118px;height:118px;object-fit:cover;border-radius:9px;display:block;border:1px solid #e2dfd8}
+.pic .nopic{display:flex;align-items:center;justify-content:center;width:118px;height:118px;border-radius:9px;background:#f0eee9;color:#a39f96;font-size:12px}
+.pic .more{position:absolute;right:6px;bottom:6px;background:rgba(0,0,0,.65);color:#fff;font-size:11px;font-weight:700;border-radius:999px;padding:1px 7px}
+.dc{flex:1;min-width:0;display:flex;flex-direction:column}
+.dh{display:flex;gap:8px;align-items:baseline}.area{font-size:12.5px;color:#6b6861;flex:1;min-width:0}
+.dt{font-weight:700;font-size:15px;margin-top:4px;line-height:1.35}
+.sev{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:1px 7px;border-radius:5px;background:#eee;flex:none}.sev.hi{background:#c0392b;color:#fff}.sev.md{background:#f6c453}.sev.lo{background:#dfe6ee}
+.dept{flex:none;font-size:13.5px;white-space:nowrap}
+.ph{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.ph img{width:64px;height:64px;object-fit:cover;border-radius:7px;border:1px solid #e2dfd8}
+.df{display:flex;justify-content:space-between;align-items:baseline;margin-top:auto;padding-top:6px}.fx{font-size:12px;color:#2e7d44;font-weight:600}.tm{font-size:11.5px;color:#9b978e;margin-left:auto}
 .foot{margin-top:30px;font-size:12px;color:#6b6861}
 .okgrid{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
-@media print{.wrap{padding:0}.ph img{width:80px;height:80px}a{text-decoration:none;color:inherit}}
+@media print{.wrap{padding:0}.pic,.pic img,.pic .nopic{width:96px;height:96px;flex-basis:96px}a{text-decoration:none;color:inherit}}
 </style></head><body><div class="wrap">
 <h1>Weekly Property Walk — JW Marriott Atlanta</h1>
 <div class="sub">${fmtD(w.date)} · walked by ${h(w.by)} · ${w.status === 'closed' ? 'completed ' + fmtT(w.closedAt || w.updatedAt) : '<b>walk still in progress</b>'}</div>
@@ -268,14 +279,13 @@ h3{font-size:15px;margin:16px 0 6px;display:flex;align-items:center;gap:8px}
 </div>
 <div class="pills"><b>Priority:</b> ${pills(bySev, sevCls) || '—'}</div>
 <div class="pills"><b>Department:</b> ${pills(byDept) || '—'}</div>
-<div class="pills"><b>Category:</b> ${pills(byCat) || '—'}</div>
 
-<h2>Findings by area</h2>
-${areas.filter(([, a]) => (a.defects || []).length).map(([id, a]) => `<h3>${h(areaName(w, id))} <span style="color:#6b6861;font-weight:400;font-size:13px">${a.defects.length} defect${a.defects.length === 1 ? '' : 's'}</span></h3>${a.defects.map((d) => defectRow(d)).join('')}`).join('') || '<p>No defects logged.</p>'}
+<h2>Findings</h2>
+${ds.sort((a, b) => areaOrder(w, a.areaId) - areaOrder(w, b.areaId)).map((d) => defectRow(d)).join('') || '<p>No defects logged.</p>'}
 
 ${areas.filter(([, a]) => a.ok && !(a.defects || []).length).length ? `<h2>Checked — no issues</h2><div class="okgrid">${areas.filter(([, a]) => a.ok && !(a.defects || []).length).map(([id]) => `<span class="ok">✓ ${h(areaName(w, id))}</span>`).join('')}</div>` : ''}
 
-${carry.length ? `<h2>Still open from previous walks</h2>${carry.map((d) => `<div style="font-size:13px;color:#6b6861;margin-top:10px"><b style="color:#1c1b18">${h(d.areaLabel)}</b></div>` + defectRow(d, true)).join('')}` : ''}
+${carry.length ? `<h2>Still open from previous walks</h2>${carry.map((d) => defectRow(d, true)).join('')}` : ''}
 
 <div class="foot">Generated ${fmtT(new Date().toISOString())} · <a href="/report/${h(w.id)}.csv">Download CSV</a></div>
 </div></body></html>`;

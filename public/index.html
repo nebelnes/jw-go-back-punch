@@ -192,7 +192,6 @@ body:not(.walk) #walkRoot{display:none}
  <div class="body"><div class="frm">
   <label>What's wrong</label><textarea id="dTx" placeholder="Describe the defect…"></textarea>
   <label>Where exactly (optional)</label><input type="text" id="dLoc" placeholder="e.g. outside 1017, left of entry">
-  <label>Category</label><div class="cchips" id="dCat"></div>
   <label>Priority (optional)</label><div class="cchips" id="dSev"></div>
   <label>Department</label><div class="cchips" id="dDept"></div>
   <label>Photos</label><div class="phrow" id="dPh"></div>
@@ -452,7 +451,7 @@ function renderArea(){const id=W.area,w=W.cur;if(!id||!w)return;const s=areaStat
  const carry=W.openItems.filter(d=>d.areaId===id);
  let h=`<div class="okrow ${s.a.ok&&!s.n?'on':''}">${s.a.ok&&!s.n?'✓ Checked, no issues found':'Not yet marked as checked'}</div>`;
  h+=`<div class="grp">Defects this walk (${s.n})</div>`;
- h+=s.n?s.defs.map((d,i)=>`<button class="drow ${d.fixed?'fixed':''}" data-i="${i}">${d.sev?`<span class="sv ${d.sev}">${esc(d.sev)}</span>`:''}<span class="tx"><p>${esc(d.t)}</p><div class="meta"><b>${esc(d.dept||'')}</b>${[d.loc,d.cat].filter(Boolean).map(x=>' · '+esc(x)).join('')}</div>${d.fixed?`<div class="fx">✓ Fixed by ${esc(d.fixed.by)} · ${fmt(d.fixed.at)}</div>`:''}${thumbs(d.photos)}</span>${closed?'':`<span class="del" data-del="${i}">✕</span>`}</button>`).join(''):'<div class="empty">None logged.</div>';
+ h+=s.n?s.defs.map((d,i)=>`<button class="drow ${d.fixed?'fixed':''}" data-i="${i}">${d.sev?`<span class="sv ${d.sev}">${esc(d.sev)}</span>`:''}<span class="tx"><p>${esc(d.t)}</p><div class="meta"><b>${esc(d.dept||'')}</b>${d.loc?' · '+esc(d.loc):''}</div>${d.fixed?`<div class="fx">✓ Fixed by ${esc(d.fixed.by)} · ${fmt(d.fixed.at)}</div>`:''}${thumbs(d.photos)}</span>${closed?'':`<span class="del" data-del="${i}">✕</span>`}</button>`).join(''):'<div class="empty">None logged.</div>';
  if(carry.length){h+=`<div class="cosec"><div class="grp">↺ Carried over from previous walks (${carry.length})</div>`+carry.map((d,i)=>`<div class="drow" style="border:0;padding:6px 0">${d.sev?`<span class="sv ${d.sev}">${esc(d.sev)}</span>`:''}<span class="tx"><p>${esc(d.t)}</p><div class="meta">walk ${niceDate(d.walkDate)} · open ${Math.max(0,Math.floor((Date.now()-new Date(d.at))/864e5))} days${d.dept?' · → '+esc(d.dept):''}</div>${thumbs(d.photos)}</span>${closed?'':`<button class="btn sm grn" data-fix="${i}">Fixed</button>`}</div>`).join('')+'</div>'}
  document.getElementById('aBody').innerHTML=h;
  document.getElementById('aOk').textContent=s.a.ok?'Undo checked':'✓ Looks good';document.getElementById('aOk').style.display=closed?'none':'';document.getElementById('aAdd').style.display=closed?'none':'';
@@ -472,8 +471,8 @@ function chips(el,list,cur,on,clearable){el.innerHTML=list.map(x=>`<button type=
 function openDefect(i){const w=W.cur,id=W.area;const a=(w.areas||{})[id]||{defects:[]};const d=i==null?null:a.defects[i];W.edit=i;
  document.getElementById('dTitle').textContent=d?'Edit defect':'New defect';document.getElementById('dMeta').textContent=areaName(id);
  document.getElementById('dTx').value=d?d.t:'';document.getElementById('dLoc').value=d?d.loc||'':'';
- F={cat:d?d.cat||'Other':'Other',sev:d?d.sev||'':'',dept:d?d.dept||'Engineering':'Engineering'};W.photos=d?[...(d.photos||[])]:[];
- chips(document.getElementById('dCat'),CATS,F.cat,v=>F.cat=v);chips(document.getElementById('dSev'),SEVS,F.sev,v=>F.sev=v,true);chips(document.getElementById('dDept'),DEPTS,F.dept,v=>F.dept=v);
+ F={cat:d?d.cat||'':'',sev:d?d.sev||'':'',dept:d?d.dept||'Engineering':'Engineering'};W.photos=d?[...(d.photos||[])]:[];
+ chips(document.getElementById('dSev'),SEVS,F.sev,v=>F.sev=v,true);chips(document.getElementById('dDept'),DEPTS,F.dept,v=>F.dept=v);
  renderPhotos();
  const closed=w.status==='closed';
  document.getElementById('dActs').innerHTML=(d?`<button class="btn warn" id="dDel">Delete</button><button class="btn ${d.fixed?'':'grn'}" id="dFix">${d.fixed?'Reopen':'✓ Mark fixed'}</button>`:'')+(closed&&d?'':`<button class="btn pri" id="dSave">${d?'Save changes':'Save defect'}</button>`);
