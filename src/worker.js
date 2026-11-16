@@ -9,7 +9,8 @@
 //   GET  /api/walks                  -> {walks:[summary...]}
 //   GET  /api/walk/<id>              -> walk doc
 //   PUT  /api/walk/<id>   (x-pin)    -> {ok}
-//   DELETE /api/walk/<id> (x-pin)    -> {ok}
+//   DELETE /api/walk/<id> (x-pin, x-reset) -> {ok}
+//   POST /api/walk/<id>/reset (x-pin, x-reset) -> clears the walk
 // Photos (DO "photos"):
 //   POST /api/photo       (x-pin, image/jpeg body) -> {id}
 //   GET  /api/photo/<id>             -> image/jpeg
@@ -84,6 +85,14 @@ export class Punch {
     if (walk && req.method === 'DELETE') {
       await this.storage.delete('walk:' + walk[1]);
       return json({ ok: true });
+    }
+    const reset = p.match(/^\/api\/walk\/([A-Za-z0-9_.-]{1,64})\/reset$/);
+    if (reset && req.method === 'POST') {
+      const w = await this.storage.get('walk:' + reset[1]);
+      if (!w) return json({ error: 'not found' }, 404);
+      w.areas = {}; w.rooms = []; w.extraAreas = []; w.status = 'open'; delete w.closedAt; w.updatedAt = new Date().toISOString();
+      await this.storage.put('walk:' + reset[1], w);
+      return json({ ok: true, updatedAt: w.updatedAt });
     }
 
     // ---- photos
@@ -280,6 +289,11 @@ export default {
       if (req.method !== 'GET') {
         const pin = req.headers.get('x-pin') || '';
         if (!env.PIN || pin !== String(env.PIN)) return json({ error: 'pin' }, 401);
+      }
+      // destructive walk operations need the reset code as well
+      if ((req.method === 'DELETE' && p.startsWith('/api/walk/')) || p.endsWith('/reset')) {
+        const code = req.headers.get('x-reset') || '';
+        if (!env.RESET_CODE || code !== String(env.RESET_CODE)) return json({ error: 'reset-code' }, 403);
       }
       const which = p.startsWith('/api/photo') ? 'photos' : (p.startsWith('/api/walk') || p.startsWith('/report/')) ? 'walks' : 'main';
       return env.PUNCH.get(env.PUNCH.idFromName(which)).fetch(req);

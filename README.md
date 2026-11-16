@@ -21,7 +21,7 @@ npx wrangler deploy
 
 Then open `https://jw-go-back-punch.<your-subdomain>.workers.dev` on each phone and "Add to Home Screen".
 
-**Change the team PIN** in `wrangler.toml` (`PIN = "2026"`) before deploying, or set a secret named `PIN` in the Worker's settings (overrides the file). The app asks for the PIN once per phone before it will save.
+**Change the team PIN** in `wrangler.toml` (`PIN = "2026"`) and the **reset code** (`RESET_CODE = "7788"`, needed to reset or delete a whole walk) before deploying, or set a secret named `PIN` in the Worker's settings (overrides the file). The app asks for the PIN once per phone before it will save.
 
 ## How storage is chosen
 The app picks the first that works: the Worker API (shared, live) → claude.ai artifact storage (shared, when opened as a Claude artifact) → this phone only (local mode, shown as a banner).

@@ -99,7 +99,7 @@ section.floor{margin-top:14px}
 .dlg .box{background:#fff;border-radius:16px;padding:20px;width:100%;max-width:380px}
 .dlg h3{margin:0 0 6px;font-size:18px}.dlg p{margin:0 0 12px;color:var(--mute);font-size:13.5px}
 .dlg input{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px;font-size:17px;text-transform:uppercase}
-.dlg button{margin-top:12px;width:100%;background:var(--ink);color:#fff;border-radius:10px;padding:12px;font-weight:600;font-size:15px}
+.dlg button{margin-top:12px;width:100%;flex:1;background:var(--ink);color:#fff;border-radius:10px;padding:12px;font-weight:600;font-size:15px}
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:9px 16px;border-radius:999px;font-size:13.5px;z-index:40;opacity:0;transition:opacity .2s;pointer-events:none;white-space:nowrap}
 .toast.on{opacity:1}
 
@@ -201,6 +201,7 @@ body:not(.walk) #walkRoot{display:none}
  <div class="acts" id="dActs"></div>
 </div>
 <div class="viewer" id="viewer"><img id="viewerImg" alt=""></div>
+<div class="dlg" id="cdlg"><div class="box"><h3 id="cT"></h3><p id="cP"></p><div style="display:flex;gap:8px"><button id="cNo" style="background:#faf9f6;color:var(--ink);border:1px solid var(--line)">Cancel</button><button id="cYes" style="background:var(--down)">Delete</button></div></div></div>
 <div class="dlg" id="gdlg"><div class="box"><h3 id="gT"></h3><p id="gP"></p><input id="gIn"><button id="gGo">OK</button></div></div>
 <div class="toast" id="toast"></div>
 <script>
@@ -369,6 +370,8 @@ function niceDate(s){const d=new Date(s+'T12:00:00');return d.toLocaleDateString
 function areaName(id){const p=PUBLIC_AREAS.find(a=>a[0]===id);if(p)return p[1];let m=id.match(/^hall-(\d+)$/);if(m)return ord(+m[1])+' Floor hallway';m=id.match(/^room-(\d+)$/);if(m)return 'Room '+m[1];const x=(W.cur&&W.cur.extraAreas||[]).find(e=>e.id===id);return x?x.label:id}
 function askText(title,desc,ph,val){return new Promise(res=>{const d=document.getElementById('gdlg'),i=document.getElementById('gIn');document.getElementById('gT').textContent=title;document.getElementById('gP').textContent=desc;i.placeholder=ph||'';i.value=val||'';i.style.textTransform=title.toLowerCase().includes('initial')?'uppercase':'none';d.classList.add('on');setTimeout(()=>i.focus(),50);
  const done=v=>{d.classList.remove('on');d.onclick=null;res(v)};document.getElementById('gGo').onclick=()=>{const v=i.value.trim();if(v)done(v)};i.onkeydown=e=>{if(e.key==='Enter'){const v=i.value.trim();if(v)done(v)}};d.onclick=e=>{if(e.target===d)done(null)}})}
+function askConfirm(title,desc,yes){return new Promise(res=>{const d=document.getElementById('cdlg');document.getElementById('cT').textContent=title;document.getElementById('cP').textContent=desc;document.getElementById('cYes').textContent=yes||'Delete';d.classList.add('on');
+ const done=v=>{d.classList.remove('on');d.onclick=null;res(v)};document.getElementById('cYes').onclick=()=>done(true);document.getElementById('cNo').onclick=()=>done(false);d.onclick=e=>{if(e.target===d)done(false)}})}
 // --- tabs
 function setTab(t){document.body.classList.toggle('walk',t==='walk');document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));document.getElementById('ttl').textContent=t==='walk'?'Weekly Walk':'Owner Go-Back Punch';try{localStorage.setItem('jwpunch.tab',t)}catch(e){}
  if(t==='walk'){if(!W.cur)loadWalks()}else stopPoll()}
@@ -404,6 +407,7 @@ function renderWalk(){const w=W.cur;if(!w)return;wList.innerHTML='';
  wView.innerHTML=`<div class="wtop"><button class="btn sm" id="wBack">‹ Walks</button><h2>${niceDate(w.date)} · ${esc(w.by)}</h2>${closed?'<span class="st closed" style="font-size:11.5px;font-weight:700;border-radius:999px;padding:3px 9px;background:#e6f4ea;color:#1f5c31">Completed</span>':''}</div>
  <div class="wstats">${walked} areas checked · ${defs.length} defect${defs.length===1?'':'s'} (${defs.filter(d=>!d.fixed).length} open)${W.openItems.length?` · ${W.openItems.length} carried over`:''}</div>
  <div class="wact">${closed?`<a class="btn" href="${rep}" target="_blank">📄 Report</a><button class="btn" id="wShare">Share</button><button class="btn" id="wCopy">Copy summary</button><button class="btn sm" id="wReopen">Reopen</button>`:`<a class="btn" href="${rep}" target="_blank">Preview report</a><button class="btn grn" id="wFinish">Finish walk</button>`}</div>
+ <div class="wact" style="margin-top:2px"><button class="btn sm warn" id="wReset" style="flex:0 0 auto">Reset walk…</button><button class="btn sm warn" id="wDelete" style="flex:0 0 auto">Delete walk…</button></div>
  ${AREA_GROUPS.map(([g,items],gi)=>`<section class="wsec"><div class="fh"><h2>${g}</h2><span class="n">${items.filter(([id])=>areaState(id).cls).length}/${items.length} checked</span></div><div class="wgrid">${items.map(([id,l])=>wTile(id,l)).join('')}${gi===AREA_GROUPS.length-1?(w.extraAreas||[]).map(e=>wTile(e.id,e.label)).join('')+(closed?'':'<button class="wt add" id="wAddArea">+ Other area</button>'):''}</div></section>`).join('')}
  <section class="wsec"><div class="fh"><h2>Guest floor hallways</h2><span class="n">${FLOORS.filter(f=>areaState('hall-'+f).cls).length}/${FLOORS.length} checked</span></div>
   <div class="wgrid">${FLOORS.map(f=>wTile('hall-'+f,ord(f)+' Floor')).join('')}</div></section>
@@ -414,6 +418,10 @@ function renderWalk(){const w=W.cur;if(!w)return;wList.innerHTML='';
  const ar=document.getElementById('wAddRoom');if(ar)ar.onclick=async()=>{const v=await askText('Add room','Room number to spot-check.','e.g. 1214');if(!v)return;const n=parseInt(v,10);if(!DATA.rooms.includes(n)){toast('Room '+v+' is not in the hotel room list');return}if(!(w.rooms||[]).includes(n)){w.rooms=w.rooms||[];w.rooms.push(n);w.rooms.sort((a,b)=>a-b);await wSave()}renderWalk();openArea('room-'+n)};
  const aa=document.getElementById('wAddArea');if(aa)aa.onclick=async()=>{const v=await askText('Add area','Name of the area (e.g. Loading dock, Employee cafeteria).','Area name');if(!v)return;const id='x'+Date.now().toString(36);w.extraAreas=w.extraAreas||[];w.extraAreas.push({id,label:v});await wSave();renderWalk();openArea(id)};
  const fin=document.getElementById('wFinish');if(fin)fin.onclick=()=>{if(fin.dataset.c){w.status='closed';w.closedAt=new Date().toISOString();wSave().then(()=>{renderWalk();toast('Walk completed — report is ready')})}else{fin.dataset.c='1';fin.textContent='Tap again to confirm';setTimeout(()=>{if(fin.isConnected){delete fin.dataset.c;fin.textContent='Finish walk'}},3000)}};
+ document.getElementById('wReset').onclick=async()=>{if(!await askConfirm('Reset this walk?','Every checked area, defect and spot-checked room in this walk will be cleared. This cannot be undone.','Reset'))return;const code=await askText('Reset code','Enter the reset code to confirm.','Code');if(!code)return;
+  try{const r=await fetch('/api/walk/'+w.id+'/reset',{method:'POST',headers:{'x-pin':pin,'x-reset':code}});if(r.status===403){toast('Wrong reset code');return}if(!r.ok)throw new Error('HTTP '+r.status);W.cur=await (await wFetch('/api/walk/'+w.id)).json();await loadOpen();renderWalk();toast('Walk reset')}catch(e){toast('Reset failed: '+e.message)}};
+ document.getElementById('wDelete').onclick=async()=>{if(!await askConfirm('Delete this walk?','The walk and all its defects will be removed. Its report link will stop working.','Delete'))return;const code=await askText('Reset code','Enter the reset code to confirm.','Code');if(!code)return;
+  try{const r=await fetch('/api/walk/'+w.id,{method:'DELETE',headers:{'x-pin':pin,'x-reset':code}});if(r.status===403){toast('Wrong reset code');return}if(!r.ok)throw new Error('HTTP '+r.status);toast('Walk deleted');backToList()}catch(e){toast('Delete failed: '+e.message)}};
  const ro=document.getElementById('wReopen');if(ro)ro.onclick=async()=>{w.status='open';delete w.closedAt;await wSave();renderWalk()};
  const sh=document.getElementById('wShare');if(sh)sh.onclick=async()=>{const url=location.origin+rep;const title='Weekly walk '+niceDate(w.date)+' – JW Atlanta';try{if(navigator.share)await navigator.share({title,text:summaryText(),url});else{await navigator.clipboard.writeText(url);toast('Report link copied')}}catch(e){}};
  const cp=document.getElementById('wCopy');if(cp)cp.onclick=async()=>{try{await navigator.clipboard.writeText(summaryText()+'\nFull report: '+location.origin+rep);toast('Summary copied')}catch(e){toast('Copy blocked')}};
@@ -433,11 +441,11 @@ function renderArea(){const id=W.area,w=W.cur;if(!id||!w)return;const s=areaStat
  const carry=W.openItems.filter(d=>d.areaId===id);
  let h=`<div class="okrow ${s.a.ok&&!s.n?'on':''}">${s.a.ok&&!s.n?'✓ Checked, no issues found':'Not yet marked as checked'}</div>`;
  h+=`<div class="grp">Defects this walk (${s.n})</div>`;
- h+=s.n?s.defs.map((d,i)=>`<button class="drow ${d.fixed?'fixed':''}" data-i="${i}"><span class="sv ${d.sev||''}">${esc(d.sev||'—')}</span><span class="tx"><p>${esc(d.t)}</p><div class="meta">${[d.loc,d.cat,d.dept&&'→ '+d.dept].filter(Boolean).map(esc).join(' · ')}</div>${d.fixed?`<div class="fx">✓ Fixed by ${esc(d.fixed.by)} · ${fmt(d.fixed.at)}</div>`:''}${thumbs(d.photos)}</span></button>`).join(''):'<div class="empty">None logged.</div>';
+ h+=s.n?s.defs.map((d,i)=>`<button class="drow ${d.fixed?'fixed':''}" data-i="${i}"><span class="sv ${d.sev||''}">${esc(d.sev||'—')}</span><span class="tx"><p>${esc(d.t)}</p><div class="meta">${[d.loc,d.cat,d.dept&&'→ '+d.dept].filter(Boolean).map(esc).join(' · ')}</div>${d.fixed?`<div class="fx">✓ Fixed by ${esc(d.fixed.by)} · ${fmt(d.fixed.at)}</div>`:''}${thumbs(d.photos)}</span>${closed?'':`<span class="del" data-del="${i}">✕</span>`}</button>`).join(''):'<div class="empty">None logged.</div>';
  if(carry.length){h+=`<div class="cosec"><div class="grp">↺ Carried over from previous walks (${carry.length})</div>`+carry.map((d,i)=>`<div class="drow" style="border:0;padding:6px 0"><span class="sv ${d.sev||''}">${esc(d.sev||'—')}</span><span class="tx"><p>${esc(d.t)}</p><div class="meta">walk ${niceDate(d.walkDate)} · open ${Math.max(0,Math.floor((Date.now()-new Date(d.at))/864e5))} days${d.dept?' · → '+esc(d.dept):''}</div>${thumbs(d.photos)}</span>${closed?'':`<button class="btn sm grn" data-fix="${i}">Fixed</button>`}</div>`).join('')+'</div>'}
  document.getElementById('aBody').innerHTML=h;
  document.getElementById('aOk').textContent=s.a.ok?'Undo checked':'✓ Looks good';document.getElementById('aOk').style.display=closed?'none':'';document.getElementById('aAdd').style.display=closed?'none':'';
- document.getElementById('aBody').onclick=e=>{const v=e.target.closest('[data-view]');if(v){viewPhoto(v.dataset.view);return}const fx=e.target.closest('[data-fix]');if(fx){fixCarry(carry[+fx.dataset.fix]);return}const r=e.target.closest('.drow[data-i]');if(r)openDefect(+r.dataset.i)};
+ document.getElementById('aBody').onclick=async e=>{const dd=e.target.closest('[data-del]');if(dd){const i=+dd.dataset.del,d=s.defs[i];if(await askConfirm('Delete this defect?','"'+d.t+'" will be removed from this walk.','Delete')){s.defs.splice(i,1);await wSave();renderWalk();renderArea()}return}const v=e.target.closest('[data-view]');if(v){viewPhoto(v.dataset.view);return}const fx=e.target.closest('[data-fix]');if(fx){fixCarry(carry[+fx.dataset.fix]);return}const r=e.target.closest('.drow[data-i]');if(r)openDefect(+r.dataset.i)};
 }
 document.getElementById('aOk').onclick=async()=>{const w=W.cur,id=W.area;w.areas=w.areas||{};w.areas[id]=w.areas[id]||{ok:false,defects:[]};w.areas[id].ok=!w.areas[id].ok;await wSave();renderWalk();renderArea()};
 document.getElementById('aAdd').onclick=()=>openDefect(null);
@@ -459,7 +467,7 @@ function openDefect(i){const w=W.cur,id=W.area;const a=(w.areas||{})[id]||{defec
  const closed=w.status==='closed';
  document.getElementById('dActs').innerHTML=(d?`<button class="btn warn" id="dDel">Delete</button><button class="btn ${d.fixed?'':'grn'}" id="dFix">${d.fixed?'Reopen':'✓ Mark fixed'}</button>`:'')+(closed&&d?'':`<button class="btn pri" id="dSave">${d?'Save changes':'Save defect'}</button>`);
  const sv=document.getElementById('dSave');if(sv)sv.onclick=saveDefect;
- const dl=document.getElementById('dDel');if(dl)dl.onclick=async()=>{if(!dl.dataset.c){dl.dataset.c='1';dl.textContent='Tap again to delete';return}a.defects.splice(i,1);await wSave();closeDefect();renderWalk();renderArea()};
+ const dl=document.getElementById('dDel');if(dl)dl.onclick=async()=>{if(!await askConfirm('Delete this defect?','"'+d.t+'" will be removed from this walk.','Delete'))return;a.defects.splice(i,1);await wSave();closeDefect();renderWalk();renderArea()};
  const fx=document.getElementById('dFix');if(fx)fx.onclick=async()=>{if(d.fixed){d.fixed=null}else{const by=await askText('Mark fixed','Your initials.','e.g. AM',who);if(!by)return;who=by.toUpperCase().slice(0,4);d.fixed={by:who,at:new Date().toISOString()}}await wSave();closeDefect();renderWalk();renderArea()};
  dsheet.classList.add('on');dov.classList.add('on');if(!d)setTimeout(()=>document.getElementById('dTx').focus(),200)}
 function closeDefect(){dsheet.classList.remove('on');dov.classList.remove('on')}

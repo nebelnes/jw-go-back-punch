@@ -21,3 +21,5 @@ new_sqlite_classes = ["Punch"]
 # Team PIN the app asks for before it will save. Change it here (or set a
 # secret named PIN in the dashboard, which overrides this).
 PIN = "2026"
+# Code required to reset or delete a whole walk (set a secret named RESET_CODE to override).
+RESET_CODE = "7788"
