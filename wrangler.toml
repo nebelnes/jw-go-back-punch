@@ -22,4 +22,4 @@ new_sqlite_classes = ["Punch"]
 # secret named PIN in the dashboard, which overrides this).
 PIN = "2026"
 # Code required to reset or delete a whole walk (set a secret named RESET_CODE to override).
-RESET_CODE = "7788"
+RESET_CODE = "2026"
