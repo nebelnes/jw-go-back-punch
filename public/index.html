@@ -298,10 +298,18 @@ function render(){
  document.getElementById('pBar').style.width=(ti?100*tid/ti:0)+'%';
  }
 main.addEventListener('click',e=>{const t=e.target.closest('.tile');if(t)openSheet(t.dataset.id)});
+// ---- back-button navigation: every overlay/view is a history entry
+const NAV={stack:[]};
+function navPush(name,close){NAV.stack.push({name,close});history.pushState({n:NAV.stack.length},'')}
+function navBack(){if(NAV.stack.length)history.back()}
+function navTop(){return NAV.stack.length?NAV.stack[NAV.stack.length-1].name:''}
+window.addEventListener('popstate',()=>{const l=NAV.stack.pop();if(l)l.close()});
+history.replaceState({n:0},'');
 // ---- sheet
 const sheet=document.getElementById('sheet'),ov=document.getElementById('ov');
-function openSheet(id){openId=id;renderSheet();sheet.classList.add('on');ov.classList.add('on')}
-function closeSheet(){openId=null;sheet.classList.remove('on');ov.classList.remove('on');document.getElementById('addrow').classList.remove('on')}
+function openSheet(id){openId=id;renderSheet();sheet.classList.add('on');ov.classList.add('on');navPush('room',_closeSheet)}
+function _closeSheet(){openId=null;sheet.classList.remove('on');ov.classList.remove('on');document.getElementById('addrow').classList.remove('on')}
+function closeSheet(){if(navTop()==='room')navBack();else _closeSheet()}
 ov.onclick=closeSheet;document.getElementById('sClose').onclick=closeSheet;
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function fmt(iso){const d=new Date(iso);return (d.getMonth()+1)+'/'+d.getDate()+' '+d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}
@@ -373,9 +381,10 @@ function askText(title,desc,ph,val){return new Promise(res=>{const d=document.ge
 function askConfirm(title,desc,yes){return new Promise(res=>{const d=document.getElementById('cdlg');document.getElementById('cT').textContent=title;document.getElementById('cP').textContent=desc;document.getElementById('cYes').textContent=yes||'Delete';d.classList.add('on');
  const done=v=>{d.classList.remove('on');d.onclick=null;res(v)};document.getElementById('cYes').onclick=()=>done(true);document.getElementById('cNo').onclick=()=>done(false);d.onclick=e=>{if(e.target===d)done(false)}})}
 // --- tabs
-function setTab(t){document.body.classList.toggle('walk',t==='walk');document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));document.getElementById('ttl').textContent=t==='walk'?'Weekly Walk':'Owner Go-Back Punch';try{localStorage.setItem('jwpunch.tab',t)}catch(e){}
+function setTab(t){if(t==='walk'&&!document.body.classList.contains('walk'))navPush('tab',()=>applyTab('punch'));applyTab(t)}
+function applyTab(t){document.body.classList.toggle('walk',t==='walk');document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));document.getElementById('ttl').textContent=t==='walk'?'Weekly Walk':'Owner Go-Back Punch';try{localStorage.setItem('jwpunch.tab',t)}catch(e){}
  if(t==='walk'){if(!W.cur)loadWalks()}else stopPoll()}
-document.querySelector('.tabs').onclick=e=>{const b=e.target.closest('button');if(b)setTab(b.dataset.tab)};
+document.querySelector('.tabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.tab==='punch'&&document.body.classList.contains('walk')){const i=NAV.stack.findIndex(l=>l.name==='tab');if(i>=0){history.go(-(NAV.stack.length-i));return}}setTab(b.dataset.tab)};
 try{if(localStorage.getItem('jwpunch.tab')==='walk')setTimeout(()=>setTab('walk'),300)}catch(e){}
 // --- api
 async function wFetch(path,opt,retry){const o=Object.assign({cache:'no-store'},opt||{});o.headers=Object.assign({},o.headers||{});if(o.method&&o.method!=='GET'){o.headers['x-pin']=pin}
@@ -391,13 +400,14 @@ function renderList(){
  wList.querySelectorAll('.wcard').forEach(c=>c.onclick=()=>openWalk(c.dataset.id));}
 async function newWalk(){const by=await askText('Who is walking?','Enter your initials.','e.g. AM',who);if(!by)return;who=by.toUpperCase().slice(0,4);try{localStorage.setItem('jwpunch.who',who)}catch(e){}
  const w={id:'w'+Date.now().toString(36),date:today(),by:who,status:'open',createdAt:new Date().toISOString(),areas:{},rooms:[],extraAreas:[]};
- try{await wFetch('/api/walk/'+w.id,{method:'PUT',headers:{'content-type':'application/json'},body:JSON.stringify(w)});W.cur=w;await loadOpen();renderWalk();startPoll()}catch(e){toast('Could not create walk: '+e.message)}}
-async function openWalk(id){wList.innerHTML='<div class="empty">Loading…</div>';try{W.cur=await (await wFetch('/api/walk/'+id)).json();await loadOpen();renderWalk();startPoll()}catch(e){toast(e.message);loadWalks()}}
+ try{await wFetch('/api/walk/'+w.id,{method:'PUT',headers:{'content-type':'application/json'},body:JSON.stringify(w)});W.cur=w;await loadOpen();renderWalk();startPoll();navPush('walk',_backToList)}catch(e){toast('Could not create walk: '+e.message)}}
+async function openWalk(id){wList.innerHTML='<div class="empty">Loading…</div>';try{W.cur=await (await wFetch('/api/walk/'+id)).json();await loadOpen();renderWalk();startPoll();navPush('walk',_backToList)}catch(e){toast(e.message);loadWalks()}}
 async function loadOpen(){try{const j=await (await wFetch('/api/walks/open')).json();W.openItems=(j.items||[]).filter(d=>d.walkId!==(W.cur&&W.cur.id))}catch(e){W.openItems=[]}}
 function startPoll(){stopPoll();W.poll=setInterval(async()=>{if(!W.cur||W.pending>0||document.hidden||W.busy)return;try{const r=await fetch('/api/walk/'+W.cur.id,{cache:'no-store'});if(!r.ok)return;const w=await r.json();if(W.pending>0)return;if(w.updatedAt!==W.cur.updatedAt){W.cur=w;renderWalk();if(W.area)renderArea()}}catch(e){}},5000)}
 function stopPoll(){if(W.poll){clearInterval(W.poll);W.poll=null}}
 async function wSave(){const w=W.cur;W.pending++;try{const j=await (await wFetch('/api/walk/'+w.id,{method:'PUT',headers:{'content-type':'application/json'},body:JSON.stringify(w)})).json();w.updatedAt=j.updatedAt}catch(e){toast('Save failed: '+e.message)}finally{W.pending--}}
-function backToList(){stopPoll();W.cur=null;W.area=null;loadWalks()}
+function _backToList(){stopPoll();W.cur=null;W.area=null;wView.innerHTML='';loadWalks()}
+function backToList(){if(navTop()==='walk')navBack();else _backToList()}
 // --- walk view
 function areaState(id){const a=(W.cur.areas||{})[id]||{};const defs=a.defects||[];const carry=W.openItems.filter(d=>d.areaId===id).length;return {a,defs,n:defs.length,open:defs.filter(d=>!d.fixed).length,carry,cls:defs.length?'def':a.ok?'ok':''}}
 function wTile(id,label){const s=areaState(id);return `<button class="wt ${s.cls}" data-area="${id}"><b>${esc(label)}</b><small>${s.n?s.open+' open':s.a.ok?'✓ checked':'—'}</small>${s.n?`<span class="cnt">${s.n}</span>`:''}${s.carry?`<span class="carry">↺ ${s.carry}</span>`:''}</button>`}
@@ -432,8 +442,9 @@ function summaryText(){const w=W.cur;const lines=[`Weekly Property Walk – JW M
  if(W.openItems.length){lines.push('');lines.push('STILL OPEN FROM PREVIOUS WALKS: '+W.openItems.length)}return lines.join('\n')}
 // --- area sheet
 const asheet=document.getElementById('asheet'),aov=document.getElementById('aov');
-function openArea(id){W.area=id;renderArea();asheet.classList.add('on');aov.classList.add('on')}
-function closeArea(){W.area=null;asheet.classList.remove('on');aov.classList.remove('on')}
+function openArea(id){W.area=id;renderArea();asheet.classList.add('on');aov.classList.add('on');navPush('area',_closeArea)}
+function _closeArea(){W.area=null;asheet.classList.remove('on');aov.classList.remove('on')}
+function closeArea(){if(navTop()==='area')navBack();else _closeArea()}
 aov.onclick=closeArea;document.getElementById('aClose').onclick=closeArea;
 function thumbs(ph){return (ph||[]).length?`<div class="thumbs">${ph.map(p=>`<img src="/api/photo/${p}" data-view="${p}" loading="lazy" alt="">`).join('')}</div>`:''}
 function renderArea(){const id=W.area,w=W.cur;if(!id||!w)return;const s=areaState(id);const closed=w.status==='closed';
@@ -452,8 +463,8 @@ document.getElementById('aAdd').onclick=()=>openDefect(null);
 async function fixCarry(d){if(!d)return;const by=await askText('Mark fixed','Your initials.','e.g. AM',who);if(!by)return;who=by.toUpperCase().slice(0,4);
  try{const ow=await (await wFetch('/api/walk/'+d.walkId)).json();const def=((ow.areas||{})[d.areaId]||{}).defects?.find(x=>x.id===d.id);if(!def)throw new Error('not found');def.fixed={by:who,at:new Date().toISOString()};
   await wFetch('/api/walk/'+ow.id,{method:'PUT',headers:{'content-type':'application/json'},body:JSON.stringify(ow)});await loadOpen();renderWalk();renderArea();toast('Marked fixed')}catch(e){toast('Could not update: '+e.message)}}
-function viewPhoto(id){const v=document.getElementById('viewer');document.getElementById('viewerImg').src='/api/photo/'+id;v.classList.add('on')}
-document.getElementById('viewer').onclick=e=>e.currentTarget.classList.remove('on');
+function viewPhoto(id){const v=document.getElementById('viewer');document.getElementById('viewerImg').src='/api/photo/'+id;v.classList.add('on');navPush('viewer',()=>v.classList.remove('on'))}
+document.getElementById('viewer').onclick=()=>{if(navTop()==='viewer')navBack();else document.getElementById('viewer').classList.remove('on')};
 // --- defect form
 const dsheet=document.getElementById('dsheet'),dov=document.getElementById('dov');
 let F={cat:'',sev:'',dept:'Engineering'};
@@ -469,8 +480,9 @@ function openDefect(i){const w=W.cur,id=W.area;const a=(w.areas||{})[id]||{defec
  const sv=document.getElementById('dSave');if(sv)sv.onclick=saveDefect;
  const dl=document.getElementById('dDel');if(dl)dl.onclick=async()=>{if(!await askConfirm('Delete this defect?','"'+d.t+'" will be removed from this walk.','Delete'))return;a.defects.splice(i,1);await wSave();closeDefect();renderWalk();renderArea()};
  const fx=document.getElementById('dFix');if(fx)fx.onclick=async()=>{if(d.fixed){d.fixed=null}else{const by=await askText('Mark fixed','Your initials.','e.g. AM',who);if(!by)return;who=by.toUpperCase().slice(0,4);d.fixed={by:who,at:new Date().toISOString()}}await wSave();closeDefect();renderWalk();renderArea()};
- dsheet.classList.add('on');dov.classList.add('on');if(!d)setTimeout(()=>document.getElementById('dTx').focus(),200)}
-function closeDefect(){dsheet.classList.remove('on');dov.classList.remove('on')}
+ dsheet.classList.add('on');dov.classList.add('on');navPush('defect',_closeDefect);if(!d)setTimeout(()=>document.getElementById('dTx').focus(),200)}
+function _closeDefect(){dsheet.classList.remove('on');dov.classList.remove('on')}
+function closeDefect(){if(navTop()==='defect')navBack();else _closeDefect()}
 dov.onclick=closeDefect;document.getElementById('dClose').onclick=closeDefect;
 function renderPhotos(){const el=document.getElementById('dPh');el.innerHTML=W.photos.map(p=>`<span class="pt"><img src="/api/photo/${p}" data-view="${p}" alt=""><button type="button" class="rm" data-rm="${p}">✕</button></span>`).join('')+`<button type="button" class="cam ${W.busy?'busy':''}" id="dCam">${W.busy?'<span>Uploading…</span>':'<span style="font-size:22px">📷</span><span>Add photo</span>'}</button>`;
  el.onclick=e=>{const rm=e.target.closest('[data-rm]');if(rm){W.photos=W.photos.filter(p=>p!==rm.dataset.rm);renderPhotos();return}const v=e.target.closest('[data-view]');if(v){viewPhoto(v.dataset.view);return}if(e.target.closest('#dCam')&&!W.busy)document.getElementById('dFile').click()}}
