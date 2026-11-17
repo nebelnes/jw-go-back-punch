@@ -25,3 +25,10 @@ Then open `https://jw-go-back-punch.<your-subdomain>.workers.dev` on each phone 
 
 ## How storage is chosen
 The app picks the first that works: the Worker API (shared, live) → claude.ai artifact storage (shared, when opened as a Claude artifact) → this phone only (local mode, shown as a banner).
+
+## Live report + department updates
+
+`/report/<walkId>` refreshes itself every few seconds. Tap **Update status**, enter the department code
+(`DEPT_CODE`, currently `ATLJD`, not case-sensitive) and every defect gets a **Mark complete** button
+(name + optional comment). Completed defects stay on the report, shown green. **Reopen** undoes it.
+Departments can filter the report by tapping their name.

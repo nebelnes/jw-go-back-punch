@@ -23,3 +23,6 @@ new_sqlite_classes = ["Punch"]
 PIN = "2026"
 # Code required to reset or delete a whole walk (set a secret named RESET_CODE to override).
 RESET_CODE = "2026"
+# Code departments enter on the live report page to mark defects complete
+# (set a secret named DEPT_CODE to override). Not case-sensitive.
+DEPT_CODE = "ATLJD"

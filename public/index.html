@@ -437,7 +437,7 @@ function renderWalk(){const w=W.cur;if(!w)return;wList.innerHTML='';
 }
 function summaryText(){const w=W.cur;const lines=[`Weekly Property Walk – JW Marriott Atlanta – ${niceDate(w.date)} (walked by ${w.by})`];const ents=Object.entries(w.areas||{}).filter(([,a])=>(a.defects||[]).length);const defs=ents.flatMap(([,a])=>a.defects);
  lines.push(`${Object.values(w.areas||{}).filter(a=>a.ok||(a.defects||[]).length).length} areas checked · ${defs.length} defects (${defs.filter(d=>d.sev==='High').length} high priority) · ${defs.filter(d=>!d.fixed).length} open`);
- for(const [id,a] of ents){lines.push('');lines.push(areaName(id).toUpperCase());for(const d of a.defects)lines.push(` • ${d.dept||'-'}: ${d.t}${d.loc?' ('+d.loc+')':''}${d.sev?' ['+d.sev+']':''}${d.fixed?' ✓ fixed':''}`)}
+ for(const [id,a] of ents){lines.push('');lines.push(areaName(id).toUpperCase());for(const d of a.defects)lines.push(` • ${d.dept||'-'}: ${d.t}${d.loc?' ('+d.loc+')':''}${d.sev?' ['+d.sev+']':''}${d.fixed?' ✓ complete':''}`)}
  if(W.openItems.length){lines.push('');lines.push('STILL OPEN FROM PREVIOUS WALKS: '+W.openItems.length)}return lines.join('\n')}
 // --- area sheet
 const asheet=document.getElementById('asheet'),aov=document.getElementById('aov');
@@ -451,17 +451,17 @@ function renderArea(){const id=W.area,w=W.cur;if(!id||!w)return;const s=areaStat
  const carry=W.openItems.filter(d=>d.areaId===id);
  let h=`<div class="okrow ${s.a.ok&&!s.n?'on':''}">${s.a.ok&&!s.n?'✓ Checked, no issues found':'Not yet marked as checked'}</div>`;
  h+=`<div class="grp">Defects this walk (${s.n})</div>`;
- h+=s.n?s.defs.map((d,i)=>`<button class="drow ${d.fixed?'fixed':''}" data-i="${i}">${d.sev?`<span class="sv ${d.sev}">${esc(d.sev)}</span>`:''}<span class="tx"><p>${esc(d.t)}</p><div class="meta"><b>${esc(d.dept||'')}</b>${d.loc?' · '+esc(d.loc):''}</div>${d.fixed?`<div class="fx">✓ Fixed by ${esc(d.fixed.by)} · ${fmt(d.fixed.at)}</div>`:''}${thumbs(d.photos)}</span>${closed?'':`<span class="del" data-del="${i}">✕</span>`}</button>`).join(''):'<div class="empty">None logged.</div>';
- if(carry.length){h+=`<div class="cosec"><div class="grp">↺ Carried over from previous walks (${carry.length})</div>`+carry.map((d,i)=>`<div class="drow" style="border:0;padding:6px 0">${d.sev?`<span class="sv ${d.sev}">${esc(d.sev)}</span>`:''}<span class="tx"><p>${esc(d.t)}</p><div class="meta">walk ${niceDate(d.walkDate)} · open ${Math.max(0,Math.floor((Date.now()-new Date(d.at))/864e5))} days${d.dept?' · → '+esc(d.dept):''}</div>${thumbs(d.photos)}</span>${closed?'':`<button class="btn sm grn" data-fix="${i}">Fixed</button>`}</div>`).join('')+'</div>'}
+ h+=s.n?s.defs.map((d,i)=>`<button class="drow ${d.fixed?'fixed':''}" data-i="${i}">${d.sev?`<span class="sv ${d.sev}">${esc(d.sev)}</span>`:''}<span class="tx"><p>${esc(d.t)}</p><div class="meta"><b>${esc(d.dept||'')}</b>${d.loc?' · '+esc(d.loc):''}</div>${d.fixed?`<div class="fx">✓ Complete · ${esc(d.fixed.by)} · ${fmt(d.fixed.at)}${d.fixed.note?' — “'+esc(d.fixed.note)+'”':''}</div>`:''}${thumbs(d.photos)}</span>${closed?'':`<span class="del" data-del="${i}">✕</span>`}</button>`).join(''):'<div class="empty">None logged.</div>';
+ if(carry.length){h+=`<div class="cosec"><div class="grp">↺ Carried over from previous walks (${carry.length})</div>`+carry.map((d,i)=>`<div class="drow" style="border:0;padding:6px 0">${d.sev?`<span class="sv ${d.sev}">${esc(d.sev)}</span>`:''}<span class="tx"><p>${esc(d.t)}</p><div class="meta">walk ${niceDate(d.walkDate)} · open ${Math.max(0,Math.floor((Date.now()-new Date(d.at))/864e5))} days${d.dept?' · → '+esc(d.dept):''}</div>${thumbs(d.photos)}</span>${closed?'':`<button class="btn sm grn" data-fix="${i}">Complete</button>`}</div>`).join('')+'</div>'}
  document.getElementById('aBody').innerHTML=h;
  document.getElementById('aOk').textContent=s.a.ok?'Undo checked':'✓ Looks good';document.getElementById('aOk').style.display=closed?'none':'';document.getElementById('aAdd').style.display=closed?'none':'';
  document.getElementById('aBody').onclick=async e=>{const dd=e.target.closest('[data-del]');if(dd){const i=+dd.dataset.del,d=s.defs[i];if(await askConfirm('Delete this defect?','"'+d.t+'" will be removed from this walk.','Delete')){s.defs.splice(i,1);await wSave();renderWalk();renderArea()}return}const v=e.target.closest('[data-view]');if(v){viewPhoto(v.dataset.view);return}const fx=e.target.closest('[data-fix]');if(fx){fixCarry(carry[+fx.dataset.fix]);return}const r=e.target.closest('.drow[data-i]');if(r)openDefect(+r.dataset.i)};
 }
 document.getElementById('aOk').onclick=async()=>{const w=W.cur,id=W.area;w.areas=w.areas||{};w.areas[id]=w.areas[id]||{ok:false,defects:[]};w.areas[id].ok=!w.areas[id].ok;await wSave();renderWalk();renderArea()};
 document.getElementById('aAdd').onclick=()=>openDefect(null);
-async function fixCarry(d){if(!d)return;const by=await askText('Mark fixed','Your initials.','e.g. AM',who);if(!by)return;who=by.toUpperCase().slice(0,4);
+async function fixCarry(d){if(!d)return;const by=await askText('Mark complete','Your initials.','e.g. AM',who);if(!by)return;who=by.toUpperCase().slice(0,4);
  try{const ow=await (await wFetch('/api/walk/'+d.walkId)).json();const def=((ow.areas||{})[d.areaId]||{}).defects?.find(x=>x.id===d.id);if(!def)throw new Error('not found');def.fixed={by:who,at:new Date().toISOString()};
-  await wFetch('/api/walk/'+ow.id,{method:'PUT',headers:{'content-type':'application/json'},body:JSON.stringify(ow)});await loadOpen();renderWalk();renderArea();toast('Marked fixed')}catch(e){toast('Could not update: '+e.message)}}
+  await wFetch('/api/walk/'+ow.id,{method:'PUT',headers:{'content-type':'application/json'},body:JSON.stringify(ow)});await loadOpen();renderWalk();renderArea();toast('Marked complete')}catch(e){toast('Could not update: '+e.message)}}
 function viewPhoto(id){const v=document.getElementById('viewer');document.getElementById('viewerImg').src='/api/photo/'+id;v.classList.add('on');navPush('viewer',()=>v.classList.remove('on'))}
 document.getElementById('viewer').onclick=()=>{if(navTop()==='viewer')navBack();else document.getElementById('viewer').classList.remove('on')};
 // --- defect form
@@ -475,10 +475,10 @@ function openDefect(i){const w=W.cur,id=W.area;const a=(w.areas||{})[id]||{defec
  chips(document.getElementById('dSev'),SEVS,F.sev,v=>F.sev=v,true);chips(document.getElementById('dDept'),DEPTS,F.dept,v=>F.dept=v);
  renderPhotos();
  const closed=w.status==='closed';
- document.getElementById('dActs').innerHTML=(d?`<button class="btn warn" id="dDel">Delete</button><button class="btn ${d.fixed?'':'grn'}" id="dFix">${d.fixed?'Reopen':'✓ Mark fixed'}</button>`:'')+(closed&&d?'':`<button class="btn pri" id="dSave">${d?'Save changes':'Save defect'}</button>`);
+ document.getElementById('dActs').innerHTML=(d?`<button class="btn warn" id="dDel">Delete</button><button class="btn ${d.fixed?'':'grn'}" id="dFix">${d.fixed?'Reopen':'✓ Mark complete'}</button>`:'')+(closed&&d?'':`<button class="btn pri" id="dSave">${d?'Save changes':'Save defect'}</button>`);
  const sv=document.getElementById('dSave');if(sv)sv.onclick=saveDefect;
  const dl=document.getElementById('dDel');if(dl)dl.onclick=async()=>{if(!await askConfirm('Delete this defect?','"'+d.t+'" will be removed from this walk.','Delete'))return;a.defects.splice(i,1);await wSave();closeDefect();renderWalk();renderArea()};
- const fx=document.getElementById('dFix');if(fx)fx.onclick=async()=>{if(d.fixed){d.fixed=null}else{const by=await askText('Mark fixed','Your initials.','e.g. AM',who);if(!by)return;who=by.toUpperCase().slice(0,4);d.fixed={by:who,at:new Date().toISOString()}}await wSave();closeDefect();renderWalk();renderArea()};
+ const fx=document.getElementById('dFix');if(fx)fx.onclick=async()=>{if(d.fixed){d.fixed=null}else{const by=await askText('Mark complete','Your initials.','e.g. AM',who);if(!by)return;who=by.toUpperCase().slice(0,4);d.fixed={by:who,at:new Date().toISOString()}}await wSave();closeDefect();renderWalk();renderArea()};
  dsheet.classList.add('on');dov.classList.add('on');navPush('defect',_closeDefect);if(!d)setTimeout(()=>document.getElementById('dTx').focus(),200)}
 function _closeDefect(){dsheet.classList.remove('on');dov.classList.remove('on')}
 function closeDefect(){if(navTop()==='defect')navBack();else _closeDefect()}
