@@ -286,6 +286,7 @@ body{margin:0;font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,
 h1{font-size:22px;margin:0 0 2px}.sub{color:#6b6861;margin-bottom:10px}
 .top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0 4px}
 .live{font-size:12px;color:#6b6861;flex:1}.live i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2e7d44;margin-right:5px;animation:p 2s infinite}@keyframes p{50%{opacity:.3}}
+.lock.sh{border-color:#cfcbc2;font-weight:600}
 .lock{font:inherit;font-size:13.5px;font-weight:600;border:1.5px solid #1c1b18;background:#fff;border-radius:999px;padding:6px 14px;cursor:pointer}
 body.unlocked .lock{background:#2e7d44;border-color:#2e7d44;color:#fff}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:14px 0}
@@ -325,7 +326,7 @@ body.unlocked .act{display:inline-block}
 .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#1c1b18;color:#fff;padding:9px 16px;border-radius:999px;font-size:13.5px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:20}.toast.on{opacity:1}
 @media print{.wrap{padding:0}.pic,.pic img,.pic .nopic{width:96px;height:96px;flex-basis:96px}a{text-decoration:none;color:inherit}.noprint,.act,.top{display:none!important}.pgen{display:inline}.d.fixed{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 </style></head><body><div class="wrap">
-<div class="top noprint"><span class="live"><i></i>Live · updated <span id="lt">now</span></span><button class="lock" id="lock">🔒 Update status</button></div>
+<div class="top noprint"><span class="live"><i></i>Live · updated <span id="lt">now</span></span><button class="lock sh" id="share">Share link</button><button class="lock" id="lock">🔒 Update status</button></div>
 <div id="app">
 <h1>Weekly Property Walk — JW Marriott Atlanta</h1>
 <div class="sub">${fmtD(w.date)} · walked by ${h(w.by)} · ${w.status === 'closed' ? 'completed ' + fmtT(w.closedAt || w.updatedAt) : '<b>walk still in progress</b>'}</div>
@@ -416,6 +417,7 @@ document.addEventListener('click',function(e){
   else if(t.dataset.act){act(t.closest('.d'),t.dataset.act)}
 });
 $('lock').onclick=function(){if(code){code='';ls('jw.rep.code',null);setLock();toast('Update mode off')}else unlock()};
+$('share').onclick=function(){var u=location.origin+location.pathname,t=document.title;if(navigator.share)navigator.share({title:t,url:u}).catch(function(){});else if(navigator.clipboard)navigator.clipboard.writeText(u).then(function(){toast('Report link copied')});else prompt('Copy this link',u)};
 $('mi1').onkeydown=function(e){if(e.key==='Enter')$('mo').click()};
 document.addEventListener('visibilitychange',function(){if(!document.hidden)refresh()});
 setInterval(refresh,8000);setLock();applyFilter();$('lt').textContent=new Date().toLocaleTimeString([],{hour:'numeric',minute:'2-digit',second:'2-digit'});
