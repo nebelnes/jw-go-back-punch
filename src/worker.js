@@ -323,6 +323,7 @@ body.unlocked .act{display:inline-block}
 .mb input,.mb textarea{width:100%;box-sizing:border-box;font:inherit;font-size:16px;border:1.5px solid #cfcbc2;border-radius:9px;padding:9px 10px}.mb textarea{min-height:64px;resize:vertical}
 .err{color:#c0392b;font-size:13px;min-height:18px;margin-top:6px}.ma{display:flex;gap:8px;justify-content:flex-end;margin-top:6px}
 .ma button{font:inherit;font-weight:700;border-radius:9px;padding:9px 16px;cursor:pointer;border:1.5px solid #cfcbc2;background:#fff}.ma button.pri{background:#2e7d44;border-color:#2e7d44;color:#fff}
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:30}.lb.on{display:flex}.lb img{max-width:100%;max-height:100%;object-fit:contain}
 .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#1c1b18;color:#fff;padding:9px 16px;border-radius:999px;font-size:13.5px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:20}.toast.on{opacity:1}
 @media print{.wrap{padding:0}.pic,.pic img,.pic .nopic{width:96px;height:96px;flex-basis:96px}a{text-decoration:none;color:inherit}.noprint,.act,.top{display:none!important}.pgen{display:inline}.d.fixed{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 </style></head><body><div class="wrap">
@@ -351,6 +352,7 @@ ${carry.length ? `<h2>Still open from previous walks</h2>${carry.map((d) => defe
 <div class="foot"><span class="pgen" id="pgen"></span><a class="noprint" href="/report/${h(w.id)}.csv">Download CSV</a></div>
 </div>
 <div class="ov" id="ov"><div class="mb"><h3 id="mt"></h3><p id="mp"></p><div id="mf1"><label id="ml1"></label><input id="mi1" autocomplete="off"></div><div id="mf2"><label id="ml2"></label><textarea id="mi2"></textarea></div><div class="err" id="me"></div><div class="ma"><button id="mc">Cancel</button><button class="pri" id="mo">OK</button></div></div></div>
+<div class="lb" id="lb"><img id="lbi" alt=""></div>
 <div class="toast" id="toast"></div>
 <script>
 (function(){
@@ -365,15 +367,21 @@ function applyFilter(){
   document.querySelectorAll('button.dp').forEach(function(b){b.classList.toggle('on',b.dataset.dept===FD)});
   document.querySelectorAll('button.flt').forEach(function(b){b.classList.toggle('on',(b.dataset.flt==='open')===FO)});
 }
+var layers=[];
+function pushLayer(fn){layers.push(fn);history.pushState({l:layers.length},'')}
+window.addEventListener('popstate',function(){var f=layers.pop();if(f)f()});
 function ask(o){return new Promise(function(res){
   modal=true;$('mt').textContent=o.title;$('mp').textContent=o.text||'';$('me').textContent='';
   [1,2].forEach(function(n){var f=o['f'+n];$('mf'+n).style.display=f?'':'none';if(f){$('ml'+n).textContent=f.label;var i=$('mi'+n);i.value=f.value||'';i.placeholder=f.ph||''}});
-  $('mo').textContent=o.ok||'OK';$('mo').style.display='';$('ov').className='ov on';
+  $('mo').textContent=o.ok||'OK';$('ov').className='ov on';
   var first=o.f1?$('mi1'):null;if(first)setTimeout(function(){first.focus()},50);
-  function close(v){modal=false;$('ov').className='ov';$('mo').onclick=$('mc').onclick=null;res(v)}
-  $('mc').onclick=function(){close(null)};
-  $('mo').onclick=function(){close({a:o.f1?$('mi1').value.trim():'',b:o.f2?$('mi2').value.trim():''})};
+  var out=null;
+  pushLayer(function(){modal=false;$('ov').className='ov';$('mo').onclick=$('mc').onclick=null;res(out)});
+  $('mc').onclick=function(){history.back()};
+  $('mo').onclick=function(){out={a:o.f1?$('mi1').value.trim():'',b:o.f2?$('mi2').value.trim():''};history.back()};
 })}
+function showPhoto(src){$('lbi').src=src;$('lb').className='lb on';pushLayer(function(){$('lb').className='lb'})}
+$('lb').onclick=function(){history.back()};
 function post(path,body){return fetch(path,{method:'POST',headers:{'content-type':'application/json','x-code':code},body:JSON.stringify(body||{})})}
 async function unlock(){
   for(;;){
@@ -411,6 +419,7 @@ async function refresh(force){
   }catch(e){}
 }
 document.addEventListener('click',function(e){
+  var pa=e.target.closest('.pic a,.ph a');if(pa){e.preventDefault();showPhoto(pa.getAttribute('href'));return}
   var t=e.target.closest('button');if(!t)return;
   if(t.classList.contains('dp')){FD=FD===t.dataset.dept?'':t.dataset.dept;applyFilter()}
   else if(t.classList.contains('flt')){FO=t.dataset.flt==='open';applyFilter()}
