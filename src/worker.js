@@ -289,7 +289,7 @@ function reportHtml(w, carry) {
         ${(d.photos || []).length > 1 ? '<div class="ph">' + d.photos.slice(1).map((p) => `<a href="/api/photo/${h(p)}" target="_blank"><img src="/api/photo/${h(p)}" loading="lazy" alt=""></a>`).join('') + '</div>' : ''}
         ${(d.updates || []).length ? '<div class="ups">' + d.updates.map((u) => `<div class="up"><b>${h(u.by)}</b> <span>${fmtT(u.at)}</span><div>${h(u.text)}</div></div>`).join('') + '</div>' : ''}
         ${d.fixed && d.fixed.note ? `<div class="cnote">“${h(d.fixed.note)}”</div>` : ''}
-        <div class="df"><span class="fx">${d.fixed ? '✓ Complete · ' + h(d.fixed.by) + ' · ' + fmtT(d.fixed.at) : ''}</span><button class="act upd" data-act="comment">💬 Progress update</button>${d.fixed ? '<button class="act re" data-act="reopen">Reopen</button>' : '<button class="act go" data-act="complete">✓ Mark complete</button>'}<span class="tm">${showWalk ? 'walk ' + h(d.walkDate) + ' · ' + (d.fixed ? '' : 'open ' + age(d.at)) : fmtT(d.at) + (d.by ? ' · ' + h(d.by) : '')}</span></div>
+        <div class="df"><span class="fx">${d.fixed ? '✓ Complete · ' + h(d.fixed.by) + ' · ' + fmtT(d.fixed.at) : ''}</span><button class="act upd" data-act="comment">💬 Update</button>${d.fixed ? '<button class="act re" data-act="reopen">Reopen</button>' : '<button class="act go" data-act="complete">✓ Complete</button>'}<span class="tm">${showWalk ? 'walk ' + h(d.walkDate) + ' · ' + (d.fixed ? '' : 'open ' + age(d.at)) : fmtT(d.at) + (d.by ? ' · ' + h(d.by) : '')}</span></div>
       </div>
     </div>`;
   const clean = areas.filter(([, a]) => a.ok && !(a.defects || []).length);
@@ -328,10 +328,10 @@ h2{font-size:16px;margin:26px 0 8px;padding-bottom:4px;border-bottom:2px solid #
 .sev{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:1px 7px;border-radius:5px;background:#eee;flex:none}.sev.hi{background:#c0392b;color:#fff}.sev.md{background:#f6c453}.sev.lo{background:#dfe6ee}
 .dept{flex:none;font-size:13.5px;white-space:nowrap}
 .ph{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.ph img{width:64px;height:64px;object-fit:cover;border-radius:7px;border:1px solid #e2dfd8}
-.df{display:flex;gap:8px;align-items:center;margin-top:auto;padding-top:6px;flex-wrap:wrap}.fx{font-size:12.5px;color:#2e7d44;font-weight:700}.tm{font-size:11.5px;color:#9b978e;margin-left:auto}
-.act{display:none;font:inherit;font-size:13px;font-weight:700;border-radius:8px;padding:6px 12px;cursor:pointer}
-.act.go{border:1.5px solid #2e7d44;background:#fff;color:#2e7d44}.act.re{border:1px solid #cfcbc2;background:#fff;color:#6b6861;font-weight:600;font-size:12px;padding:3px 9px}
-body.unlocked .act{display:inline-block}
+.df{display:flex;gap:6px;align-items:center;margin-top:auto;padding-top:6px;flex-wrap:wrap}.fx{flex:0 0 100%;font-size:12px;color:#2e7d44;font-weight:700}.fx:empty{display:none}.tm{flex:0 0 100%;text-align:right;font-size:11px;color:#9b978e}
+.act{display:none;flex:1 1 0;min-width:0;font:inherit;font-size:12px;font-weight:700;border-radius:7px;padding:5px 4px;cursor:pointer;text-align:center;white-space:nowrap;background:#fff}
+.act.go{border:1.5px solid #2e7d44;color:#2e7d44}.act.re{border:1.5px solid #9b978e;color:#6b6861}
+body.unlocked .act{display:block}
 .foot{margin-top:30px;font-size:12px;color:#6b6861}.pgen{display:none}
 .okgrid{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
 .ov{position:fixed;inset:0;background:rgba(20,18,14,.5);display:none;align-items:center;justify-content:center;padding:20px;z-index:10}.ov.on{display:flex}
