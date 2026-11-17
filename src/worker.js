@@ -131,7 +131,12 @@ export class Punch {
         if (!by) return json({ error: 'name' }, 400);
         def.fixed = { by, at: new Date().toISOString(), note: String(b.note || '').trim().slice(0, 300), via: 'report' };
       } else if (b.action === 'reopen') def.fixed = null;
-      else return json({ error: 'action' }, 400);
+      else if (b.action === 'comment') {
+        const by = String(b.by || '').trim().slice(0, 30), text = String(b.note || '').trim().slice(0, 500);
+        if (!by) return json({ error: 'name' }, 400);
+        if (!text) return json({ error: 'text' }, 400);
+        def.updates = (def.updates || []).concat([{ by, at: new Date().toISOString(), text }]).slice(-50);
+      } else return json({ error: 'action' }, 400);
       w.updatedAt = new Date().toISOString();
       await this.storage.put('walk:' + act[1], w);
       return json({ ok: true });
@@ -171,9 +176,18 @@ function allDefects(w) {
 // A walker's phone may save a stale copy of the walk; don't let it wipe completions made on the live report meanwhile.
 function keepReportFixes(old, body) {
   if (!old || !body.updatedAt || !(old.updatedAt > body.updatedAt)) return;
-  const keep = {};
-  for (const a of Object.values(old.areas || {})) for (const d of a.defects || []) if (d.fixed && d.fixed.via === 'report') keep[d.id] = d.fixed;
-  for (const a of Object.values(body.areas || {})) for (const d of a.defects || []) if (!d.fixed && keep[d.id]) d.fixed = keep[d.id];
+  const keep = {}, ups = {};
+  for (const a of Object.values(old.areas || {})) for (const d of a.defects || []) {
+    if (d.fixed && d.fixed.via === 'report') keep[d.id] = d.fixed;
+    if ((d.updates || []).length) ups[d.id] = d.updates;
+  }
+  for (const a of Object.values(body.areas || {})) for (const d of a.defects || []) {
+    if (!d.fixed && keep[d.id]) d.fixed = keep[d.id];
+    if (ups[d.id]) {
+      const have = new Set((d.updates || []).map((u) => u.at + u.text));
+      d.updates = (d.updates || []).concat(ups[d.id].filter((u) => !have.has(u.at + u.text))).sort((x, y) => x.at.localeCompare(y.at));
+    }
+  }
 }
 function openDefects(w) { return allDefects(w).filter((d) => !d.fixed); }
 function summary(w) {
@@ -243,9 +257,9 @@ function areaOrder(w, id) {
 // ---- CSV
 function csv(w) {
   const esc = (s) => '"' + String(s ?? '').replace(/"/g, '""') + '"';
-  const rows = [['Walk date', 'Walked by', 'Area', 'Defect', 'Location', 'Category', 'Priority', 'Department', 'Status', 'Completed by', 'Completed at', 'Comment', 'Logged at', 'Photos']];
+  const rows = [['Walk date', 'Walked by', 'Area', 'Defect', 'Location', 'Category', 'Priority', 'Department', 'Status', 'Completed by', 'Completed at', 'Comment', 'Updates', 'Logged at', 'Photos']];
   const ds = allDefects(w).sort((a, b) => areaOrder(w, a.areaId) - areaOrder(w, b.areaId));
-  for (const d of ds) rows.push([w.date, w.by, d.areaLabel, d.t, d.loc || '', d.cat || '', d.sev || '', d.dept || '', d.fixed ? 'Complete' : 'Open', d.fixed?.by || '', d.fixed?.at || '', d.fixed?.note || '', d.at, (d.photos || []).length]);
+  for (const d of ds) rows.push([w.date, w.by, d.areaLabel, d.t, d.loc || '', d.cat || '', d.sev || '', d.dept || '', d.fixed ? 'Complete' : 'Open', d.fixed?.by || '', d.fixed?.at || '', d.fixed?.note || '', (d.updates || []).map((u) => `${u.by}: ${u.text}`).join(' | '), d.at, (d.photos || []).length]);
   return rows.map((r) => r.map(esc).join(',')).join('\r\n');
 }
 
@@ -273,8 +287,9 @@ function reportHtml(w, carry) {
         <div class="dh"><span class="area">${h(d.areaLabel)}${d.loc ? ' · ' + h(d.loc) : ''}</span>${d.sev ? `<span class="sev ${sevCls(d.sev)}">${h(d.sev)}</span>` : ''}<b class="dept">${h(d.dept || '')}</b></div>
         <div class="dt">${h(d.t)}</div>
         ${(d.photos || []).length > 1 ? '<div class="ph">' + d.photos.slice(1).map((p) => `<a href="/api/photo/${h(p)}" target="_blank"><img src="/api/photo/${h(p)}" loading="lazy" alt=""></a>`).join('') + '</div>' : ''}
+        ${(d.updates || []).length ? '<div class="ups">' + d.updates.map((u) => `<div class="up"><b>${h(u.by)}</b> <span>${fmtT(u.at)}</span><div>${h(u.text)}</div></div>`).join('') + '</div>' : ''}
         ${d.fixed && d.fixed.note ? `<div class="cnote">“${h(d.fixed.note)}”</div>` : ''}
-        <div class="df"><span class="fx">${d.fixed ? '✓ Complete · ' + h(d.fixed.by) + ' · ' + fmtT(d.fixed.at) : ''}</span>${d.fixed ? '<button class="act re" data-act="reopen">Reopen</button>' : '<button class="act go" data-act="complete">✓ Mark complete</button>'}<span class="tm">${showWalk ? 'walk ' + h(d.walkDate) + ' · ' + (d.fixed ? '' : 'open ' + age(d.at)) : fmtT(d.at) + (d.by ? ' · ' + h(d.by) : '')}</span></div>
+        <div class="df"><span class="fx">${d.fixed ? '✓ Complete · ' + h(d.fixed.by) + ' · ' + fmtT(d.fixed.at) : ''}</span><button class="act upd" data-act="comment">💬 Progress update</button>${d.fixed ? '<button class="act re" data-act="reopen">Reopen</button>' : '<button class="act go" data-act="complete">✓ Mark complete</button>'}<span class="tm">${showWalk ? 'walk ' + h(d.walkDate) + ' · ' + (d.fixed ? '' : 'open ' + age(d.at)) : fmtT(d.at) + (d.by ? ' · ' + h(d.by) : '')}</span></div>
       </div>
     </div>`;
   const clean = areas.filter(([, a]) => a.ok && !(a.defects || []).length);
@@ -307,6 +322,8 @@ h2{font-size:16px;margin:26px 0 8px;padding-bottom:4px;border-bottom:2px solid #
 .dc{flex:1;min-width:0;display:flex;flex-direction:column}
 .dh{display:flex;gap:8px;align-items:baseline}.area{font-size:12.5px;color:#6b6861;flex:1;min-width:0}
 .dt{font-weight:700;font-size:15px;margin-top:4px;line-height:1.35}
+.ups{margin-top:6px}.up{border-left:3px solid #9bb7d4;background:#f3f7fb;border-radius:0 7px 7px 0;padding:4px 9px;margin-top:4px;font-size:13.5px}.up b{font-size:12.5px}.up span{font-size:11.5px;color:#7d8a98;margin-left:4px}
+.act.upd{border:1.5px solid #3b6ea5;background:#fff;color:#3b6ea5}
 .cnote{font-size:13px;color:#33533c;margin-top:4px;font-style:italic}
 .sev{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:1px 7px;border-radius:5px;background:#eee;flex:none}.sev.hi{background:#c0392b;color:#fff}.sev.md{background:#f6c453}.sev.lo{background:#dfe6ee}
 .dept{flex:none;font-size:13.5px;white-space:nowrap}
@@ -395,7 +412,11 @@ async function unlock(){
 async function act(card,a){
   var id=card.dataset.id,wk=card.dataset.walk,title=card.querySelector('.dt').textContent;
   var body;
-  if(a==='complete'){
+  if(a==='comment'){
+    var c=await ask({title:'Progress update',text:title,f1:{label:'Your name',value:ls('jw.rep.name'),ph:'e.g. Mike (Engineering)'},f2:{label:'Update',ph:'e.g. Parts ordered, ETA Friday'},ok:'Post update'});
+    if(!c)return;if(!c.a||!c.b){toast('Name and update are required');return}
+    ls('jw.rep.name',c.a);body={action:'comment',by:c.a,note:c.b};
+  }else if(a==='complete'){
     var r=await ask({title:'Mark complete',text:title,f1:{label:'Your name',value:ls('jw.rep.name'),ph:'e.g. Mike (Engineering)'},f2:{label:'Comment (optional)',ph:'What was done?'},ok:'Mark complete'});
     if(!r)return;if(!r.a){toast('Name is required');return}
     ls('jw.rep.name',r.a);body={action:'complete',by:r.a,note:r.b};
@@ -406,7 +427,7 @@ async function act(card,a){
     var x=await post('/report/'+wk+'/defect/'+id,body);
     if(x.status===401){code='';ls('jw.rep.code',null);setLock();toast('Code no longer valid');return}
     if(!x.ok){toast('Could not save');return}
-    toast(a==='complete'?'Marked complete ✓':'Reopened');await refresh(true);
+    toast(a==='complete'?'Marked complete ✓':a==='comment'?'Update posted':'Reopened');await refresh(true);
   }catch(e){toast('No connection — try again')}
 }
 async function refresh(force){
